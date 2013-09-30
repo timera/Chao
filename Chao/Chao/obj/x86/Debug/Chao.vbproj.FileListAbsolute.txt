@@ -1,0 +1,12 @@
+C:\Users\Benson\Desktop\Chao-master\Chao\Chao\bin\Debug\Chao.exe
+C:\Users\Benson\Desktop\Chao-master\Chao\Chao\bin\Debug\Chao.pdb
+C:\Users\Benson\Desktop\Chao-master\Chao\Chao\bin\Debug\Chao.xml
+C:\Users\Benson\Desktop\Chao-master\Chao\Chao\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Benson\Desktop\Chao-master\Chao\Chao\obj\x86\Debug\Chao.Resources.resources
+C:\Users\Benson\Desktop\Chao-master\Chao\Chao\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Benson\Desktop\Chao-master\Chao\Chao\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Benson\Desktop\Chao-master\Chao\Chao\obj\x86\Debug\Chao.exe
+C:\Users\Benson\Desktop\Chao-master\Chao\Chao\obj\x86\Debug\Chao.xml
+C:\Users\Benson\Desktop\Chao-master\Chao\Chao\obj\x86\Debug\Chao.pdb
+C:\Users\Benson\Desktop\Chao-master\Chao\Chao\obj\x86\Debug\Chao.Form1.resources
+C:\Users\Benson\Desktop\Chao-master\Chao\Chao\obj\x86\Debug\Chao.Resource1.resources

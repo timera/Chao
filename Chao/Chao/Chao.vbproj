@@ -94,13 +94,26 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Resource1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource1.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.vb</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -113,6 +126,42 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\小型開挖機%28compact excavator%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\小型膠輪式裝料機%28compact loader  wheeled%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\滑移裝料機%28skid steer loader%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\履帶式推土機%28crawler dozer%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\履帶式開挖裝料機%28crawler backhoe loader%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\履帶式開挖機%28crawler excavator%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\履帶式裝料機%28crawler loader%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\膠輪式推土機%28wheeled dozer%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\膠輪式開挖裝料機%28wheeled backhoe loader%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\膠輪式開挖機%28wheeled excavator%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\膠輪式裝料機%28wheeled loader%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\壓路機%28rollers%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
