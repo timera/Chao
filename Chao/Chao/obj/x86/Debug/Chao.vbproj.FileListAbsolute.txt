@@ -10,3 +10,4 @@ C:\Users\Benson\Desktop\Chao-master\Chao\Chao\obj\x86\Debug\Chao.xml
 C:\Users\Benson\Desktop\Chao-master\Chao\Chao\obj\x86\Debug\Chao.pdb
 C:\Users\Benson\Desktop\Chao-master\Chao\Chao\obj\x86\Debug\Chao.Form1.resources
 C:\Users\Benson\Desktop\Chao-master\Chao\Chao\obj\x86\Debug\Chao.Resource1.resources
+C:\Users\Benson\Desktop\Chao-master\Chao\Chao\obj\x86\Debug\Chao.Form2.resources
