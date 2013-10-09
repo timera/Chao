@@ -48,6 +48,7 @@ Partial Class Machine_choose
         Me.LineShape2 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.LineShape1 = New Microsoft.VisualBasic.PowerPacks.LineShape()
         Me.setup_finish = New System.Windows.Forms.Button()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.Picture_machine = New System.Windows.Forms.PictureBox()
         Me.GroupBox_A1_A2_A3.SuspendLayout()
         Me.GroupBox_A4.SuspendLayout()
@@ -297,6 +298,15 @@ Partial Class Machine_choose
         Me.setup_finish.Text = "設置完成"
         Me.setup_finish.UseVisualStyleBackColor = True
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(60, 445)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 27
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Picture_machine
         '
         Me.Picture_machine.BackColor = System.Drawing.SystemColors.ButtonHighlight
@@ -314,6 +324,7 @@ Partial Class Machine_choose
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.AppWorkspace
         Me.ClientSize = New System.Drawing.Size(776, 664)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.setup_finish)
         Me.Controls.Add(Me.O)
         Me.Controls.Add(Me.Label10)
@@ -365,5 +376,6 @@ Partial Class Machine_choose
     Friend WithEvents LineShape1 As Microsoft.VisualBasic.PowerPacks.LineShape
     Friend WithEvents LineShape2 As Microsoft.VisualBasic.PowerPacks.LineShape
     Friend WithEvents setup_finish As System.Windows.Forms.Button
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 
 End Class

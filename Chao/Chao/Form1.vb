@@ -159,4 +159,7 @@ Public Class Machine_choose
         Main.Show()
     End Sub
 
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        Program.Show()
+    End Sub
 End Class

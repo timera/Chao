@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class Form2
+Partial Class Main
     Inherits System.Windows.Forms.Form
 
     'Form 覆寫 Dispose 以清除元件清單。
@@ -23,158 +23,89 @@ Partial Class Form2
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox5 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox6 = New System.Windows.Forms.PictureBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Label_Background = New System.Windows.Forms.Label()
+        Me.Label_1st = New System.Windows.Forms.Label()
+        Me.Label_2nd = New System.Windows.Forms.Label()
+        Me.Label_3rd = New System.Windows.Forms.Label()
+        Me.Label_Additional = New System.Windows.Forms.Label()
+        Me.Label_RSS = New System.Windows.Forms.Label()
+        Me.Button_BGcheck = New System.Windows.Forms.Button()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.startButton = New System.Windows.Forms.Button()
         Me.timeLabel = New System.Windows.Forms.Label()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ShapeContainer1 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
+        Me.light_1st = New Microsoft.VisualBasic.PowerPacks.OvalShape()
+        Me.light_2nd = New Microsoft.VisualBasic.PowerPacks.OvalShape()
+        Me.light_3rd = New Microsoft.VisualBasic.PowerPacks.OvalShape()
+        Me.light_Additional = New Microsoft.VisualBasic.PowerPacks.OvalShape()
+        Me.light_RSS = New Microsoft.VisualBasic.PowerPacks.OvalShape()
+        Me.light_BG = New Microsoft.VisualBasic.PowerPacks.OvalShape()
+        Me.stopButton = New System.Windows.Forms.Button()
+        Me.continueButton = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
-        'PictureBox1
+        'Label_Background
         '
-        Me.PictureBox1.Image = Global.Chao.My.Resources.Resources.red
-        Me.PictureBox1.InitialImage = Global.Chao.My.Resources.Resources.red
-        Me.PictureBox1.Location = New System.Drawing.Point(30, 21)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(32, 27)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
+        Me.Label_Background.AutoSize = True
+        Me.Label_Background.Location = New System.Drawing.Point(68, 21)
+        Me.Label_Background.Name = "Label_Background"
+        Me.Label_Background.Size = New System.Drawing.Size(63, 12)
+        Me.Label_Background.TabIndex = 6
+        Me.Label_Background.Text = "Background"
         '
-        'PictureBox2
+        'Label_1st
         '
-        Me.PictureBox2.Image = Global.Chao.My.Resources.Resources.red
-        Me.PictureBox2.InitialImage = Global.Chao.My.Resources.Resources.red
-        Me.PictureBox2.Location = New System.Drawing.Point(30, 54)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(32, 27)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox2.TabIndex = 1
-        Me.PictureBox2.TabStop = False
+        Me.Label_1st.AutoSize = True
+        Me.Label_1st.Location = New System.Drawing.Point(68, 54)
+        Me.Label_1st.Name = "Label_1st"
+        Me.Label_1st.Size = New System.Drawing.Size(18, 12)
+        Me.Label_1st.TabIndex = 7
+        Me.Label_1st.Text = "1st"
         '
-        'PictureBox3
+        'Label_2nd
         '
-        Me.PictureBox3.Image = Global.Chao.My.Resources.Resources.red
-        Me.PictureBox3.InitialImage = Global.Chao.My.Resources.Resources.red
-        Me.PictureBox3.Location = New System.Drawing.Point(30, 90)
-        Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(32, 27)
-        Me.PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox3.TabIndex = 2
-        Me.PictureBox3.TabStop = False
+        Me.Label_2nd.AutoSize = True
+        Me.Label_2nd.Location = New System.Drawing.Point(68, 90)
+        Me.Label_2nd.Name = "Label_2nd"
+        Me.Label_2nd.Size = New System.Drawing.Size(23, 12)
+        Me.Label_2nd.TabIndex = 8
+        Me.Label_2nd.Text = "2nd"
         '
-        'PictureBox4
+        'Label_3rd
         '
-        Me.PictureBox4.Image = Global.Chao.My.Resources.Resources.red
-        Me.PictureBox4.InitialImage = Global.Chao.My.Resources.Resources.red
-        Me.PictureBox4.Location = New System.Drawing.Point(30, 123)
-        Me.PictureBox4.Name = "PictureBox4"
-        Me.PictureBox4.Size = New System.Drawing.Size(32, 27)
-        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox4.TabIndex = 3
-        Me.PictureBox4.TabStop = False
+        Me.Label_3rd.AutoSize = True
+        Me.Label_3rd.Location = New System.Drawing.Point(68, 123)
+        Me.Label_3rd.Name = "Label_3rd"
+        Me.Label_3rd.Size = New System.Drawing.Size(21, 12)
+        Me.Label_3rd.TabIndex = 9
+        Me.Label_3rd.Text = "3rd"
         '
-        'PictureBox5
+        'Label_Additional
         '
-        Me.PictureBox5.Image = Global.Chao.My.Resources.Resources.red
-        Me.PictureBox5.InitialImage = Global.Chao.My.Resources.Resources.red
-        Me.PictureBox5.Location = New System.Drawing.Point(30, 156)
-        Me.PictureBox5.Name = "PictureBox5"
-        Me.PictureBox5.Size = New System.Drawing.Size(32, 27)
-        Me.PictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox5.TabIndex = 4
-        Me.PictureBox5.TabStop = False
+        Me.Label_Additional.AutoSize = True
+        Me.Label_Additional.Location = New System.Drawing.Point(68, 156)
+        Me.Label_Additional.Name = "Label_Additional"
+        Me.Label_Additional.Size = New System.Drawing.Size(54, 12)
+        Me.Label_Additional.TabIndex = 10
+        Me.Label_Additional.Text = "Additional"
         '
-        'PictureBox6
+        'Label_RSS
         '
-        Me.PictureBox6.Image = Global.Chao.My.Resources.Resources.red
-        Me.PictureBox6.InitialImage = Global.Chao.My.Resources.Resources.red
-        Me.PictureBox6.Location = New System.Drawing.Point(30, 189)
-        Me.PictureBox6.Name = "PictureBox6"
-        Me.PictureBox6.Size = New System.Drawing.Size(32, 27)
-        Me.PictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox6.TabIndex = 5
-        Me.PictureBox6.TabStop = False
+        Me.Label_RSS.AutoSize = True
+        Me.Label_RSS.Location = New System.Drawing.Point(68, 189)
+        Me.Label_RSS.Name = "Label_RSS"
+        Me.Label_RSS.Size = New System.Drawing.Size(25, 12)
+        Me.Label_RSS.TabIndex = 11
+        Me.Label_RSS.Text = "RSS"
         '
-        'Label1
+        'Button_BGcheck
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(68, 21)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(63, 12)
-        Me.Label1.TabIndex = 6
-        Me.Label1.Text = "Background"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(68, 54)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(18, 12)
-        Me.Label2.TabIndex = 7
-        Me.Label2.Text = "1st"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(68, 90)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(23, 12)
-        Me.Label3.TabIndex = 8
-        Me.Label3.Text = "2nd"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(68, 123)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(21, 12)
-        Me.Label4.TabIndex = 9
-        Me.Label4.Text = "3rd"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(68, 156)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(54, 12)
-        Me.Label5.TabIndex = 10
-        Me.Label5.Text = "Additional"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(68, 189)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(25, 12)
-        Me.Label6.TabIndex = 11
-        Me.Label6.Text = "RSS"
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(137, 16)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 12
-        Me.Button1.Text = "Button1"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button_BGcheck.Location = New System.Drawing.Point(137, 16)
+        Me.Button_BGcheck.Name = "Button_BGcheck"
+        Me.Button_BGcheck.Size = New System.Drawing.Size(75, 23)
+        Me.Button_BGcheck.TabIndex = 12
+        Me.Button_BGcheck.Text = "test"
+        Me.Button_BGcheck.UseVisualStyleBackColor = True
         '
         'Timer1
         '
@@ -182,7 +113,7 @@ Partial Class Form2
         '
         'startButton
         '
-        Me.startButton.Location = New System.Drawing.Point(47, 338)
+        Me.startButton.Location = New System.Drawing.Point(33, 425)
         Me.startButton.Name = "startButton"
         Me.startButton.Size = New System.Drawing.Size(75, 23)
         Me.startButton.TabIndex = 13
@@ -191,60 +122,126 @@ Partial Class Form2
         '
         'timeLabel
         '
+        Me.timeLabel.BackColor = System.Drawing.SystemColors.Info
         Me.timeLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.timeLabel.Font = New System.Drawing.Font("微軟正黑體", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
-        Me.timeLabel.Location = New System.Drawing.Point(30, 240)
+        Me.timeLabel.Location = New System.Drawing.Point(33, 451)
         Me.timeLabel.Name = "timeLabel"
-        Me.timeLabel.Size = New System.Drawing.Size(130, 78)
+        Me.timeLabel.Size = New System.Drawing.Size(156, 78)
         Me.timeLabel.TabIndex = 15
         '
-        'Form2
+        'ShapeContainer1
+        '
+        Me.ShapeContainer1.Location = New System.Drawing.Point(0, 0)
+        Me.ShapeContainer1.Margin = New System.Windows.Forms.Padding(0)
+        Me.ShapeContainer1.Name = "ShapeContainer1"
+        Me.ShapeContainer1.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.light_1st, Me.light_2nd, Me.light_3rd, Me.light_Additional, Me.light_RSS, Me.light_BG})
+        Me.ShapeContainer1.Size = New System.Drawing.Size(811, 602)
+        Me.ShapeContainer1.TabIndex = 16
+        Me.ShapeContainer1.TabStop = False
+        '
+        'light_1st
+        '
+        Me.light_1st.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
+        Me.light_1st.Location = New System.Drawing.Point(33, 49)
+        Me.light_1st.Name = "light_1st"
+        Me.light_1st.Size = New System.Drawing.Size(25, 22)
+        '
+        'light_2nd
+        '
+        Me.light_2nd.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
+        Me.light_2nd.Location = New System.Drawing.Point(33, 82)
+        Me.light_2nd.Name = "light_2nd"
+        Me.light_2nd.Size = New System.Drawing.Size(25, 22)
+        '
+        'light_3rd
+        '
+        Me.light_3rd.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
+        Me.light_3rd.Location = New System.Drawing.Point(33, 117)
+        Me.light_3rd.Name = "light_3rd"
+        Me.light_3rd.Size = New System.Drawing.Size(25, 22)
+        '
+        'light_Additional
+        '
+        Me.light_Additional.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
+        Me.light_Additional.Location = New System.Drawing.Point(33, 151)
+        Me.light_Additional.Name = "light_Additional"
+        Me.light_Additional.Size = New System.Drawing.Size(25, 22)
+        '
+        'light_RSS
+        '
+        Me.light_RSS.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
+        Me.light_RSS.Location = New System.Drawing.Point(33, 182)
+        Me.light_RSS.Name = "light_RSS"
+        Me.light_RSS.Size = New System.Drawing.Size(25, 22)
+        '
+        'light_BG
+        '
+        Me.light_BG.BackColor = System.Drawing.SystemColors.Window
+        Me.light_BG.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
+        Me.light_BG.Location = New System.Drawing.Point(33, 16)
+        Me.light_BG.Name = "light_BG"
+        Me.light_BG.Size = New System.Drawing.Size(25, 22)
+        '
+        'stopButton
+        '
+        Me.stopButton.Location = New System.Drawing.Point(33, 532)
+        Me.stopButton.Name = "stopButton"
+        Me.stopButton.Size = New System.Drawing.Size(75, 23)
+        Me.stopButton.TabIndex = 17
+        Me.stopButton.Text = "Stop"
+        Me.stopButton.UseVisualStyleBackColor = True
+        '
+        'continueButton
+        '
+        Me.continueButton.Location = New System.Drawing.Point(114, 532)
+        Me.continueButton.Name = "continueButton"
+        Me.continueButton.Size = New System.Drawing.Size(75, 23)
+        Me.continueButton.TabIndex = 18
+        Me.continueButton.Text = "Continue"
+        Me.continueButton.UseVisualStyleBackColor = True
+        '
+        'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Window
-        Me.ClientSize = New System.Drawing.Size(716, 443)
+        Me.ClientSize = New System.Drawing.Size(811, 602)
+        Me.Controls.Add(Me.continueButton)
+        Me.Controls.Add(Me.stopButton)
         Me.Controls.Add(Me.timeLabel)
         Me.Controls.Add(Me.startButton)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.PictureBox6)
-        Me.Controls.Add(Me.PictureBox5)
-        Me.Controls.Add(Me.PictureBox4)
-        Me.Controls.Add(Me.PictureBox3)
-        Me.Controls.Add(Me.PictureBox2)
-        Me.Controls.Add(Me.PictureBox1)
-        Me.Name = "Form2"
-        Me.Text = "Form2"
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Controls.Add(Me.Button_BGcheck)
+        Me.Controls.Add(Me.Label_RSS)
+        Me.Controls.Add(Me.Label_Additional)
+        Me.Controls.Add(Me.Label_3rd)
+        Me.Controls.Add(Me.Label_2nd)
+        Me.Controls.Add(Me.Label_1st)
+        Me.Controls.Add(Me.Label_Background)
+        Me.Controls.Add(Me.ShapeContainer1)
+        Me.Name = "Main"
+        Me.Text = "主測畫面"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
-    Friend WithEvents PictureBox3 As System.Windows.Forms.PictureBox
-    Friend WithEvents PictureBox4 As System.Windows.Forms.PictureBox
-    Friend WithEvents PictureBox5 As System.Windows.Forms.PictureBox
-    Friend WithEvents PictureBox6 As System.Windows.Forms.PictureBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents Label_Background As System.Windows.Forms.Label
+    Friend WithEvents Label_1st As System.Windows.Forms.Label
+    Friend WithEvents Label_2nd As System.Windows.Forms.Label
+    Friend WithEvents Label_3rd As System.Windows.Forms.Label
+    Friend WithEvents Label_Additional As System.Windows.Forms.Label
+    Friend WithEvents Label_RSS As System.Windows.Forms.Label
+    Friend WithEvents Button_BGcheck As System.Windows.Forms.Button
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents startButton As System.Windows.Forms.Button
     Friend WithEvents timeLabel As System.Windows.Forms.Label
+    Friend WithEvents ShapeContainer1 As Microsoft.VisualBasic.PowerPacks.ShapeContainer
+    Friend WithEvents light_1st As Microsoft.VisualBasic.PowerPacks.OvalShape
+    Friend WithEvents light_2nd As Microsoft.VisualBasic.PowerPacks.OvalShape
+    Friend WithEvents light_3rd As Microsoft.VisualBasic.PowerPacks.OvalShape
+    Friend WithEvents light_Additional As Microsoft.VisualBasic.PowerPacks.OvalShape
+    Friend WithEvents light_RSS As Microsoft.VisualBasic.PowerPacks.OvalShape
+    Friend WithEvents light_BG As Microsoft.VisualBasic.PowerPacks.OvalShape
+    Friend WithEvents stopButton As System.Windows.Forms.Button
+    Friend WithEvents continueButton As System.Windows.Forms.Button
 End Class
