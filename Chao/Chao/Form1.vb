@@ -1,12 +1,20 @@
 ﻿Imports Microsoft.VisualBasic.PowerPacks
 
+
+
 Public Class Machine_choose
     'coordinates for 6 points
-    Dim pos(5, 2) As Double
+    Dim pos(5) As CoorPoint
+    'Dim pos(5, 2) As Double
+    'lines coresponding to the points
+
     'coordinates for 4 points
-    Dim pos2(3, 2) As Double
+    Dim pos2(3) As CoorPoint
+    'Dim pos2(3, 2) As Double
+    'lines coresponding to the points
+    
     'Origin for the coordinates system
-    Dim origin(0, 1) As Double
+    Dim origin(1) As Double
     Dim length As Double
     ' Set plotting vars
     Dim canvas As New ShapeContainer
@@ -17,9 +25,19 @@ Public Class Machine_choose
     Dim xCor(1, 1) As Double
     Dim yCor(1, 1) As Double
 
-    Dim pointLabels As ArrayList
+    Dim ratio As Double
 
-    
+    Dim Points As ArrayList
+
+    Public Sub New()
+
+        ' 此為設計工具所需的呼叫。
+        InitializeComponent()
+        SetStyle(ControlStyles.SupportsTransparentBackColor, True)
+        ' 在 InitializeComponent() 呼叫之後加入任何初始設定。
+
+    End Sub
+
     Private Sub Machine_choose_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         setup_finish.Enabled = False
 
@@ -35,43 +53,54 @@ Public Class Machine_choose
         GroupBox_A4.Enabled = False
 
         GroupBox_Plot.Parent = Me
+        GroupBox_Plot.AllowDrop = True
         xLabel.Parent = GroupBox_Plot
         yLabel.Parent = GroupBox_Plot
+        GroupBox_Plot.BackColor = Color.Transparent
 
-        pointLabels = New ArrayList(6)
-        pointLabels.Add(p1Label)
-        pointLabels.Add(p2Label)
-        pointLabels.Add(p3Label)
-        pointLabels.Add(p4Label)
-        pointLabels.Add(p5Label)
-        pointLabels.Add(p6Label)
-        For index = 0 To pointLabels.Count - 1
-            Dim label = pointLabels.Item(index)
-            label.Parent = GroupBox_Plot
+        Points = New ArrayList
+        pos(0) = New CoorPoint(p1Label)
+        pos(1) = New CoorPoint(p2Label)
+        pos(2) = New CoorPoint(p3Label)
+        pos(3) = New CoorPoint(p4Label)
+        pos(4) = New CoorPoint(p5Label)
+        pos(5) = New CoorPoint(p6Label)
+        pos2(0) = New CoorPoint(p7Label)
+        pos2(1) = New CoorPoint(p8Label)
+        pos2(2) = New CoorPoint(p9Label)
+        pos2(3) = New CoorPoint(p10Label)
+        For i = 0 To 5
+            pos(i).Label.Parent = Me
+            Points.Add(pos(i))
+        Next
+        For i = 0 To 3
+            pos2(i).Label.Parent = Me
+            Points.Add(pos2(i))
         Next
 
         GroupBox_Plot.Visible = True
 
         'x
-        origin(0, 0) = 200
+        origin(0) = 200
         'y
-        origin(0, 1) = 150:
+        origin(1) = 150
         length = 150
         'xStart
-        xCor(0, 0) = origin(0, 0) - length 'x
-        xCor(0, 1) = origin(0, 1) 'y
+        xCor(0, 0) = origin(0) - length 'x
+        xCor(0, 1) = origin(1) 'y
         'xEnd
-        xCor(1, 0) = origin(0, 0) + length 'x
-        xCor(1, 1) = origin(0, 1) 'y
+        xCor(1, 0) = origin(0) + length 'x
+        xCor(1, 1) = origin(1) 'y
 
         'yStart
-        yCor(0, 0) = origin(0, 0) 'x
-        yCor(0, 1) = origin(0, 1) - length 'y
+        yCor(0, 0) = origin(0) 'x
+        yCor(0, 1) = origin(1) - length 'y
         'yEnd
-        yCor(1, 0) = origin(0, 0) 'x
-        yCor(1, 1) = origin(0, 1) + length 'y
+        yCor(1, 0) = origin(0) 'x
+        yCor(1, 1) = origin(1) + length 'y
         'draw coordinates
         canvas.Parent = GroupBox_Plot
+        canvas.Location = New System.Drawing.Point(0, 0)
         plotCor(xCor, yCor)
     End Sub
 
@@ -92,7 +121,6 @@ Public Class Machine_choose
         yAxis.Parent = canvas
         yLabel.Text = "y"
         yLabel.Location = New System.Drawing.Point(yCor(0, 0), yCor(0, 1))
-
     End Sub
 
     'given an array of coordinates, plot them out using the given coordinate system
@@ -101,40 +129,71 @@ Public Class Machine_choose
     'parent is the parent control to canvas
     'r is the radius for the circle
     'coors is the coordinates for the points to be plotted
-    Private Sub plot(ByVal xCor, ByVal yCor, ByVal parent, ByVal r, ByVal coors)
+    Private Sub plot(ByVal xCor As Double(,), ByVal yCor As Double(,), ByVal parent As Control, ByVal r As Double, ByVal coors As CoorPoint())
         'clear canvas first
         If Not IsNothing(canvas) Then
             canvas.Dispose()
         End If
+        'clear labels
+        For Each cp As CoorPoint In pos
+            cp.Label.Text = ""
+        Next
+        For Each cp As CoorPoint In pos2
+            cp.Label.Text = ""
+        Next
+
         canvas = New ShapeContainer()
         canvas.Parent = parent
-
+        canvas.BackColor = Color.Transparent
         'plot the coordinates
         plotCor(xCor, yCor)
 
         'plot the circle with r
         Dim temp As Double = length / r
-        Dim ratio As Double = CInt(temp)
+        ratio = CInt(temp)
 
         If ratio > temp Then
             ratio = ratio - 1
-        End If
+        else if ratio = 0
+            ratio = temp
+        End if
         r = r * ratio
-        Dim rCircle = New OvalShape((origin(0, 0) - r), (origin(0, 1) - r), 2 * r, 2 * r)
+        Dim rCircle = New OvalShape((origin(0) - r), (origin(1) - r), 2 * r, 2 * r)
         rCircle.Parent = canvas
         'plot normalized points
 
-        For index = 0 To coors.getLength(0) - 1
-            Dim x = coors(index, 0) * ratio
-            Dim y = coors(index, 1) * ratio
-            Dim rPoint = New OvalShape((origin(0, 0) + x - 2), (origin(0, 1) - y - 2), 2, 2)
+        For index = 0 To coors.GetLength(0) - 1
+            Dim x = coors(index).Coors.Xc * ratio
+            Dim y = coors(index).Coors.Yc * ratio
+            Dim rPoint = New OvalShape((origin(0) + x - 2), (origin(1) - y - 2), 2, 2)
+
             rPoint.Parent = canvas
-            pointLabels.Item(index).Text = "(" + coors(index, 0).ToString() + "," + coors(index, 1).ToString() + ")"
-            pointLabels.Item(index).Location = New System.Drawing.Point(origin(0, 0) + x, origin(0, 1) - y)
+            Dim xText = Format(coors(index).Coors.Xc, "#.##")
+            Dim yText = Format(coors(index).Coors.Yc, "#.##")
+            Dim zText = Format(coors(index).Coors.Zc, "#.##")
+            If xText = "" Then
+                xText = "0"
+            End If
+            If yText = "" Then
+                yText = "0"
+            End If
+            If zText = "" Then
+                zText = "0"
+            End If
+            coors(index).Label.Text = "(" + xText + " , " + yText + " , " + zText + ")"
+            coors(index).Label.Location = translate(New System.Drawing.Point(origin(0) + x, origin(1) - y), GroupBox_Plot.Location, Me.Location)
+            coors(index).Label.BringToFront()
         Next
-
-
     End Sub
+
+    'translate the location of point 1 from control 2's coordinates to control 3's coordinates
+    'point 1 is given in var 2 coordinates
+    'controls 2 and 3 are given in global terms)
+    Private Function translate(ByVal p1, ByVal con2, ByVal con3)
+        Dim x = p1.X + con2.X - con3.X
+        Dim y = p1.Y + con2.Y - con3.Y
+        Return New System.Drawing.Point(x, y)
+    End Function
 
     Private Sub DomainUpDown1_SelectedItemChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
@@ -200,6 +259,7 @@ Public Class Machine_choose
         End If
     End Sub
 
+
     Private Sub Button_L_check_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button_L_check.Click
         Dim r1 As Integer
         If String.IsNullOrWhiteSpace(TextBox_L.Text) Then
@@ -218,23 +278,13 @@ Public Class Machine_choose
             TextBox_r1.Text = "16"
             r1 = 16
         End If
-        pos(0, 0) = r1 * 0.7
-        pos(0, 1) = r1 * 0.7
-        pos(0, 2) = 1.5
-        pos(1, 2) = 1.5
-        pos(2, 2) = 1.5
-        pos(3, 2) = 1.5
-        pos(1, 0) = -1 * pos(0, 0)
-        pos(1, 1) = pos(0, 1)
-        pos(2, 0) = pos(1, 0)
-        pos(2, 1) = -1 * pos(1, 2)
-        pos(3, 0) = pos(0, 0)
-        pos(3, 1) = pos(2, 1)
-        pos(4, 0) = r1 * -0.27
-        pos(4, 1) = r1 * 0.65
-        pos(5, 0) = -1 * pos(4, 0)
-        pos(5, 1) = -1 * pos(4, 1)
-        pos(4, 2) = pos(5, 2) = r1 * 0.71
+        pos(0).Coors = New ThreeDPoint(r1 * 0.7, r1 * 0.7, 1.5)
+        pos(1).Coors = New ThreeDPoint(-1 * r1 * 0.7, r1 * 0.7, 1.5)
+        pos(2).Coors = New ThreeDPoint(-1 * r1 * 0.7, -1 * r1 * 0.7, 1.5)
+        pos(3).Coors = New ThreeDPoint(r1 * 0.7, -1 * r1 * 0.7, 1.5)
+        pos(4).Coors = New ThreeDPoint(r1 * -0.27, r1 * 0.65, r1 * 0.71)
+        pos(5).Coors = New ThreeDPoint(r1 * 0.27, r1 * -0.65, r1 * 0.71)
+
         plot(xCor, yCor, GroupBox_Plot, r1, pos)
 
         setup_finish.Enabled = True
@@ -256,20 +306,12 @@ Public Class Machine_choose
         D0_2 = 2 * Math.Sqrt(((L1 / 2) ^ 2) + ((L2 / 2) ^ 2) + (L3 ^ 2))
         TextBox_r2.Text = D0_2
         Dim r = D0_2
-        pos2(0, 0) = D0_2 * -0.45
-        pos2(0, 1) = D0_2 * 0.77
-        pos2(0, 2) = D0_2 * 0.45
-        pos2(1, 0) = D0_2 * -0.45
-        pos2(1, 1) = D0_2 * -0.77
-        pos2(1, 2) = D0_2 * 0.45
-        pos2(2, 0) = D0_2 * 0.89
-        pos2(2, 1) = 0
-        pos2(2, 2) = D0_2 * 0.45
-        pos2(3, 0) = 0
-        pos2(3, 1) = 0
-        pos2(3, 2) = D0_2
+        pos2(0).Coors = New ThreeDPoint(D0_2 * -0.45, D0_2 * 0.77, D0_2 * 0.45)
+        pos2(1).Coors = New ThreeDPoint(D0_2 * -0.45, D0_2 * -0.77, D0_2 * 0.45)
+        pos2(2).Coors = New ThreeDPoint(D0_2 * 0.89, 0, D0_2 * 0.45)
+        pos2(3).Coors = New ThreeDPoint(0, 0, D0_2)
 
-        plot(xCor, yCor, GroupBox_Plot, r, pos)
+        plot(xCor, yCor, GroupBox_Plot, r, pos2)
 
         setup_finish.Enabled = True
     End Sub
@@ -281,4 +323,73 @@ Public Class Machine_choose
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Program.Show()
     End Sub
+
+    Private MouseIsDown As Boolean = False
+
+    Private Sub pLabel_MouseDown(ByVal sender As Object, ByVal e As  _
+    System.Windows.Forms.MouseEventArgs) Handles p1Label.MouseDown, p2Label.MouseDown, p3Label.MouseDown, p4Label.MouseDown, p5Label.MouseDown, p6Label.MouseDown, p7Label.MouseDown, p8Label.MouseDown, p9Label.MouseDown, p10Label.MouseDown
+        ' Set a flag to show that the mouse is down.
+        MouseIsDown = True
+        For Each l As CoorPoint In Points
+            If l.Label.Name = sender.Name Then
+                If Not IsNothing(l.Line) Then
+                    l.Line.Dispose()
+                End If
+            End If
+        Next
+    End Sub
+
+    Private Sub pLabel_MouseMove(ByVal sender As Label, ByVal e As  _
+    System.Windows.Forms.MouseEventArgs) Handles p1Label.MouseMove, p2Label.MouseMove, p3Label.MouseMove, p4Label.MouseMove, p5Label.MouseMove, p6Label.MouseMove, p7Label.MouseMove, p8Label.MouseMove, p9Label.MouseMove, p10Label.MouseMove
+        If MouseIsDown Then
+            ' Initiate dragging.
+            sender.Location = Control.MousePosition
+        End If
+    End Sub
+
+    Private Sub pLabel_MouseUp(ByVal sender As Label, ByVal e As  _
+System.Windows.Forms.MouseEventArgs) Handles p1Label.MouseUp, p2Label.MouseUp, p3Label.MouseUp, p4Label.MouseUp, p5Label.MouseUp, p6Label.MouseUp, p7Label.MouseUp, p8Label.MouseUp, p9Label.MouseUp, p10Label.MouseUp
+        MouseIsDown = False
+        For Each l As CoorPoint In Points
+            If l.Label.Name = sender.Name Then
+                l.Line = New LineShape(canvas)
+                l.Line.StartPoint = New System.Drawing.Point((origin(0) + ratio * l.Coors.Xc), (origin(1) - ratio * l.Coors.Yc))
+                l.Line.EndPoint = translate(New Point(sender.Location.X + sender.Size.Width / 2, sender.Location.Y), Me.Location, GroupBox_Plot.Location)
+            End If
+        Next
+    End Sub
+End Class
+
+'helper classes for keeping track of labels and points
+Public Class CoorPoint
+    Public Label As Label
+    Public Coors As ThreeDPoint
+    Public Line As LineShape
+
+    Public Sub New(ByVal lab As Label)
+        Label = lab
+        Coors = New ThreeDPoint
+    End Sub
+
+    Public Sub New(ByVal lab As Label, ByVal p As ThreeDPoint, ByVal l As LineShape)
+        Label = lab
+        Coors = p
+        Line = l
+    End Sub
+
+End Class
+
+Public Class ThreeDPoint
+    Public Xc As Double
+    Public Yc As Double
+    Public Zc As Double
+    Public Sub New()
+    End Sub
+
+    Public Sub New(ByVal x As Double, ByVal y As Double, ByVal z As Double)
+        Xc = x
+        Yc = y
+        Zc = z
+    End Sub
+
 End Class

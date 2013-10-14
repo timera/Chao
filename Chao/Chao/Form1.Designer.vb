@@ -47,12 +47,16 @@ Partial Class Machine_choose
         Me.setup_finish = New System.Windows.Forms.Button()
         Me.Picture_machine = New System.Windows.Forms.PictureBox()
         Me.GroupBox_Plot = New System.Windows.Forms.GroupBox()
-        Me.p1Label = New System.Windows.Forms.Label()
-        Me.p2Label = New System.Windows.Forms.Label()
-        Me.p3Label = New System.Windows.Forms.Label()
-        Me.p4Label = New System.Windows.Forms.Label()
-        Me.p5Label = New System.Windows.Forms.Label()
         Me.p6Label = New System.Windows.Forms.Label()
+        Me.p1Label = New System.Windows.Forms.Label()
+        Me.p5Label = New System.Windows.Forms.Label()
+        Me.p2Label = New System.Windows.Forms.Label()
+        Me.p4Label = New System.Windows.Forms.Label()
+        Me.p3Label = New System.Windows.Forms.Label()
+        Me.p7Label = New System.Windows.Forms.Label()
+        Me.p8Label = New System.Windows.Forms.Label()
+        Me.p9Label = New System.Windows.Forms.Label()
+        Me.p10Label = New System.Windows.Forms.Label()
         Me.GroupBox_A1_A2_A3.SuspendLayout()
         Me.GroupBox_A4.SuspendLayout()
         CType(Me.Picture_machine, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,7 +68,7 @@ Partial Class Machine_choose
         Me.ComboBox_machine_list.FormattingEnabled = True
         Me.ComboBox_machine_list.Items.AddRange(New Object() {"開挖機", "拖索開挖機", "抓斗開挖機", "履帶起重機", "推土機", "牽引裝料機", "振動式打樁機", "鑽岩機", "壓路機", "輪胎式壓路機", "振動式壓路機", "瀝青混凝土舖料機(延長部分除外)", "混凝土割切機", "發電機(不含輪胎)", "空氣壓縮機(不含輪胎)", "卡車起重機", "輪形起重機", "混凝土泵", "油壓式打樁機", "油壓式鋼管壓入機", "拔樁機", "油壓式壓入拉拔樁機", "土壤取樣器", "全套管鑽掘機", "鑽土機", "混凝土破碎機"})
         Me.ComboBox_machine_list.Location = New System.Drawing.Point(27, 48)
-        Me.ComboBox_machine_list.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ComboBox_machine_list.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBox_machine_list.Name = "ComboBox_machine_list"
         Me.ComboBox_machine_list.Size = New System.Drawing.Size(381, 23)
         Me.ComboBox_machine_list.TabIndex = 0
@@ -117,7 +121,7 @@ Partial Class Machine_choose
         'TextBox_L
         '
         Me.TextBox_L.Location = New System.Drawing.Point(140, 34)
-        Me.TextBox_L.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox_L.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox_L.Name = "TextBox_L"
         Me.TextBox_L.Size = New System.Drawing.Size(131, 25)
         Me.TextBox_L.TabIndex = 6
@@ -125,7 +129,7 @@ Partial Class Machine_choose
         'TextBox_r1
         '
         Me.TextBox_r1.Location = New System.Drawing.Point(140, 69)
-        Me.TextBox_r1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox_r1.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox_r1.Name = "TextBox_r1"
         Me.TextBox_r1.Size = New System.Drawing.Size(131, 25)
         Me.TextBox_r1.TabIndex = 7
@@ -133,7 +137,7 @@ Partial Class Machine_choose
         'Button_L_check
         '
         Me.Button_L_check.Location = New System.Drawing.Point(292, 34)
-        Me.Button_L_check.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button_L_check.Margin = New System.Windows.Forms.Padding(4)
         Me.Button_L_check.Name = "Button_L_check"
         Me.Button_L_check.Size = New System.Drawing.Size(56, 26)
         Me.Button_L_check.TabIndex = 8
@@ -148,9 +152,9 @@ Partial Class Machine_choose
         Me.GroupBox_A1_A2_A3.Controls.Add(Me.Label_r1)
         Me.GroupBox_A1_A2_A3.Controls.Add(Me.Label_input_L)
         Me.GroupBox_A1_A2_A3.Location = New System.Drawing.Point(579, 48)
-        Me.GroupBox_A1_A2_A3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox_A1_A2_A3.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox_A1_A2_A3.Name = "GroupBox_A1_A2_A3"
-        Me.GroupBox_A1_A2_A3.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox_A1_A2_A3.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox_A1_A2_A3.Size = New System.Drawing.Size(371, 118)
         Me.GroupBox_A1_A2_A3.TabIndex = 9
         Me.GroupBox_A1_A2_A3.TabStop = False
@@ -203,7 +207,7 @@ Partial Class Machine_choose
         'TextBox_L1
         '
         Me.TextBox_L1.Location = New System.Drawing.Point(137, 26)
-        Me.TextBox_L1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox_L1.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox_L1.Name = "TextBox_L1"
         Me.TextBox_L1.Size = New System.Drawing.Size(131, 25)
         Me.TextBox_L1.TabIndex = 14
@@ -211,7 +215,7 @@ Partial Class Machine_choose
         'TextBox_L2
         '
         Me.TextBox_L2.Location = New System.Drawing.Point(137, 59)
-        Me.TextBox_L2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox_L2.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox_L2.Name = "TextBox_L2"
         Me.TextBox_L2.Size = New System.Drawing.Size(131, 25)
         Me.TextBox_L2.TabIndex = 15
@@ -219,7 +223,7 @@ Partial Class Machine_choose
         'TextBox_L3
         '
         Me.TextBox_L3.Location = New System.Drawing.Point(137, 91)
-        Me.TextBox_L3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox_L3.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox_L3.Name = "TextBox_L3"
         Me.TextBox_L3.Size = New System.Drawing.Size(131, 25)
         Me.TextBox_L3.TabIndex = 16
@@ -227,7 +231,7 @@ Partial Class Machine_choose
         'TextBox_r2
         '
         Me.TextBox_r2.Location = New System.Drawing.Point(137, 141)
-        Me.TextBox_r2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBox_r2.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox_r2.Name = "TextBox_r2"
         Me.TextBox_r2.Size = New System.Drawing.Size(131, 25)
         Me.TextBox_r2.TabIndex = 17
@@ -235,7 +239,7 @@ Partial Class Machine_choose
         'Button_L1_L2_L3_check
         '
         Me.Button_L1_L2_L3_check.Location = New System.Drawing.Point(289, 92)
-        Me.Button_L1_L2_L3_check.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button_L1_L2_L3_check.Margin = New System.Windows.Forms.Padding(4)
         Me.Button_L1_L2_L3_check.Name = "Button_L1_L2_L3_check"
         Me.Button_L1_L2_L3_check.Size = New System.Drawing.Size(56, 26)
         Me.Button_L1_L2_L3_check.TabIndex = 9
@@ -254,9 +258,9 @@ Partial Class Machine_choose
         Me.GroupBox_A4.Controls.Add(Me.Label_input_L3)
         Me.GroupBox_A4.Controls.Add(Me.Label_input_L1)
         Me.GroupBox_A4.Location = New System.Drawing.Point(579, 211)
-        Me.GroupBox_A4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox_A4.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox_A4.Name = "GroupBox_A4"
-        Me.GroupBox_A4.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox_A4.Padding = New System.Windows.Forms.Padding(4)
         Me.GroupBox_A4.Size = New System.Drawing.Size(371, 211)
         Me.GroupBox_A4.TabIndex = 18
         Me.GroupBox_A4.TabStop = False
@@ -294,7 +298,7 @@ Partial Class Machine_choose
         'setup_finish
         '
         Me.setup_finish.Location = New System.Drawing.Point(873, 780)
-        Me.setup_finish.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.setup_finish.Margin = New System.Windows.Forms.Padding(4)
         Me.setup_finish.Name = "setup_finish"
         Me.setup_finish.Size = New System.Drawing.Size(96, 35)
         Me.setup_finish.TabIndex = 25
@@ -306,7 +310,7 @@ Partial Class Machine_choose
         Me.Picture_machine.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.Picture_machine.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Picture_machine.Location = New System.Drawing.Point(27, 116)
-        Me.Picture_machine.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Picture_machine.Margin = New System.Windows.Forms.Padding(4)
         Me.Picture_machine.Name = "Picture_machine"
         Me.Picture_machine.Size = New System.Drawing.Size(510, 306)
         Me.Picture_machine.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
@@ -327,6 +331,14 @@ Partial Class Machine_choose
         Me.GroupBox_Plot.TabIndex = 29
         Me.GroupBox_Plot.TabStop = False
         '
+        'p6Label
+        '
+        Me.p6Label.AutoSize = True
+        Me.p6Label.Location = New System.Drawing.Point(370, 241)
+        Me.p6Label.Name = "p6Label"
+        Me.p6Label.Size = New System.Drawing.Size(0, 15)
+        Me.p6Label.TabIndex = 35
+        '
         'p1Label
         '
         Me.p1Label.AutoSize = True
@@ -334,30 +346,6 @@ Partial Class Machine_choose
         Me.p1Label.Name = "p1Label"
         Me.p1Label.Size = New System.Drawing.Size(0, 15)
         Me.p1Label.TabIndex = 30
-        '
-        'p2Label
-        '
-        Me.p2Label.AutoSize = True
-        Me.p2Label.Location = New System.Drawing.Point(370, 100)
-        Me.p2Label.Name = "p2Label"
-        Me.p2Label.Size = New System.Drawing.Size(0, 15)
-        Me.p2Label.TabIndex = 31
-        '
-        'p3Label
-        '
-        Me.p3Label.AutoSize = True
-        Me.p3Label.Location = New System.Drawing.Point(370, 132)
-        Me.p3Label.Name = "p3Label"
-        Me.p3Label.Size = New System.Drawing.Size(0, 15)
-        Me.p3Label.TabIndex = 32
-        '
-        'p4Label
-        '
-        Me.p4Label.AutoSize = True
-        Me.p4Label.Location = New System.Drawing.Point(370, 166)
-        Me.p4Label.Name = "p4Label"
-        Me.p4Label.Size = New System.Drawing.Size(0, 15)
-        Me.p4Label.TabIndex = 33
         '
         'p5Label
         '
@@ -367,13 +355,61 @@ Partial Class Machine_choose
         Me.p5Label.Size = New System.Drawing.Size(0, 15)
         Me.p5Label.TabIndex = 34
         '
-        'p6Label
+        'p2Label
         '
-        Me.p6Label.AutoSize = True
-        Me.p6Label.Location = New System.Drawing.Point(370, 241)
-        Me.p6Label.Name = "p6Label"
-        Me.p6Label.Size = New System.Drawing.Size(0, 15)
-        Me.p6Label.TabIndex = 35
+        Me.p2Label.AutoSize = True
+        Me.p2Label.Location = New System.Drawing.Point(370, 100)
+        Me.p2Label.Name = "p2Label"
+        Me.p2Label.Size = New System.Drawing.Size(0, 15)
+        Me.p2Label.TabIndex = 31
+        '
+        'p4Label
+        '
+        Me.p4Label.AutoSize = True
+        Me.p4Label.Location = New System.Drawing.Point(370, 166)
+        Me.p4Label.Name = "p4Label"
+        Me.p4Label.Size = New System.Drawing.Size(0, 15)
+        Me.p4Label.TabIndex = 33
+        '
+        'p3Label
+        '
+        Me.p3Label.AutoSize = True
+        Me.p3Label.Location = New System.Drawing.Point(370, 132)
+        Me.p3Label.Name = "p3Label"
+        Me.p3Label.Size = New System.Drawing.Size(0, 15)
+        Me.p3Label.TabIndex = 32
+        '
+        'p7Label
+        '
+        Me.p7Label.AutoSize = True
+        Me.p7Label.Location = New System.Drawing.Point(242, 473)
+        Me.p7Label.Name = "p7Label"
+        Me.p7Label.Size = New System.Drawing.Size(0, 15)
+        Me.p7Label.TabIndex = 31
+        '
+        'p8Label
+        '
+        Me.p8Label.AutoSize = True
+        Me.p8Label.Location = New System.Drawing.Point(245, 506)
+        Me.p8Label.Name = "p8Label"
+        Me.p8Label.Size = New System.Drawing.Size(0, 15)
+        Me.p8Label.TabIndex = 32
+        '
+        'p9Label
+        '
+        Me.p9Label.AutoSize = True
+        Me.p9Label.Location = New System.Drawing.Point(245, 540)
+        Me.p9Label.Name = "p9Label"
+        Me.p9Label.Size = New System.Drawing.Size(0, 15)
+        Me.p9Label.TabIndex = 33
+        '
+        'p10Label
+        '
+        Me.p10Label.AutoSize = True
+        Me.p10Label.Location = New System.Drawing.Point(245, 580)
+        Me.p10Label.Name = "p10Label"
+        Me.p10Label.Size = New System.Drawing.Size(0, 15)
+        Me.p10Label.TabIndex = 34
         '
         'Machine_choose
         '
@@ -381,6 +417,10 @@ Partial Class Machine_choose
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.AppWorkspace
         Me.ClientSize = New System.Drawing.Size(1035, 769)
+        Me.Controls.Add(Me.p10Label)
+        Me.Controls.Add(Me.p9Label)
+        Me.Controls.Add(Me.p8Label)
+        Me.Controls.Add(Me.p7Label)
         Me.Controls.Add(Me.setup_finish)
         Me.Controls.Add(Me.O)
         Me.Controls.Add(Me.xLabel)
@@ -393,7 +433,7 @@ Partial Class Machine_choose
         Me.Controls.Add(Me.ComboBox_machine_list)
         Me.Controls.Add(Me.GroupBox_Plot)
         Me.IsMdiContainer = True
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "Machine_choose"
         Me.Text = "機具選擇畫面"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
@@ -439,5 +479,9 @@ Partial Class Machine_choose
     Friend WithEvents p2Label As System.Windows.Forms.Label
     Friend WithEvents p4Label As System.Windows.Forms.Label
     Friend WithEvents p3Label As System.Windows.Forms.Label
+    Friend WithEvents p7Label As System.Windows.Forms.Label
+    Friend WithEvents p8Label As System.Windows.Forms.Label
+    Friend WithEvents p9Label As System.Windows.Forms.Label
+    Friend WithEvents p10Label As System.Windows.Forms.Label
 
 End Class
