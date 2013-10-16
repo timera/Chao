@@ -32,7 +32,7 @@ Namespace My
         
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.Chao.Machine_choose
+            Me.MainForm = Global.Chao.Program
         End Sub
     End Class
 End Namespace

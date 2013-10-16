@@ -28,6 +28,22 @@ Chao
   覆寫目前執行緒的 CurrentUICulture 屬性，對象是所有
   使用這個強型別資源類別的資源查閱。
 </summary>
+</member><member name="P:Chao.My.Resources.Resources.A1_step1">
+	<summary>
+  查詢類似 最大轉速穏定運轉測試時散熱風扇必須有70 %以上時間維持運轉(油門到底) 的當地語系化字串。
+</summary>
+</member><member name="P:Chao.My.Resources.Resources.A2_step1">
+	<summary>
+  查詢類似 高速怠轉(油門到底) 的當地語系化字串。
+</summary>
+</member><member name="P:Chao.My.Resources.Resources.A2_step2">
+	<summary>
+  查詢類似 抓斗上舉至最高舉程之75%處(舉高X米) 的當地語系化字串。
+</summary>
+</member><member name="P:Chao.My.Resources.Resources.A2_step3">
+	<summary>
+  查詢類似 再回復至原始位置(放下) 的當地語系化字串。
+</summary>
 </member><member name="T:Chao.My.Resources.Resources">
 	<summary>
   用於查詢當地語系化字串等的強型別資源類別

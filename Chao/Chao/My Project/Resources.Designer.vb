@@ -60,6 +60,42 @@ Namespace My.Resources
             End Set
         End Property
         
+        '''<summary>
+        '''  查詢類似 最大轉速穏定運轉測試時散熱風扇必須有70 %以上時間維持運轉(油門到底) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A1_step1() As String
+            Get
+                Return ResourceManager.GetString("A1_step1", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 高速怠轉(油門到底) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A2_step1() As String
+            Get
+                Return ResourceManager.GetString("A2_step1", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 抓斗上舉至最高舉程之75%處(舉高X米) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A2_step2() As String
+            Get
+                Return ResourceManager.GetString("A2_step2", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 再回復至原始位置(放下) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A2_step3() As String
+            Get
+                Return ResourceManager.GetString("A2_step3", resourceCulture)
+            End Get
+        End Property
+        
         Friend ReadOnly Property green() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("green", resourceCulture)
