@@ -244,7 +244,7 @@ Public Class Program
                 zText = "0"
             End If
             coors(index).Label.Text = "(" + xText + " , " + yText + " , " + zText + ")"
-            coors(index).Label.Location = translate(New System.Drawing.Point(origin(0) + x, origin(1) - y), GroupBox_Plot.Location, TabPage1.Location)
+            coors(index).Label.Location = translate(New System.Drawing.Point(origin(0) + x, origin(1) - y), GroupBox_Plot.Location + canvas.Location, TabPage1.Location)
             coors(index).Label.BringToFront()
         Next
     End Sub
