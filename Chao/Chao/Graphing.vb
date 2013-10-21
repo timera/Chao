@@ -11,6 +11,8 @@ Public Class CGraph
     Protected Panel As Panel
     Protected SecTextFontSize As Integer = 12
     Protected SecTextBoxSize As Size = New Size(50, 20)
+    Protected SetTimeButtonFontSize As Integer = 12
+    Protected SetTimeButtonSize As Size = New Size(50, 40)
 
     Enum Modes
         A1A2A3
@@ -28,7 +30,6 @@ Public Class CGraph
     Public Sub New(ByVal loc As Point,
                    ByVal size As Size,
                    ByVal parent As Control,
-                   ByVal type As SeriesChartType,
                    ByVal mode As Modes
                    )
         'Plot controls
@@ -40,13 +41,13 @@ Public Class CGraph
         Panel.Size = size
         Panel.Location = loc
 
+        series = New List(Of Series)
 
-        chart.Location = New Point(-20, -5) 'so it hugs the border
+        chart.Location = New Point(0, 0) 'so it hugs the border
         chart.Size = size - New Size(0, SecTextBoxSize.Height)
         chart.ChartAreas.Add(New ChartArea("ChartArea1"))
         chart.Legends.Add(New Legend("Legend1"))
 
-        series = New List(Of Series)
 
 
 
@@ -56,14 +57,7 @@ Public Class CGraph
         ElseIf mode = Modes.A4 Then
             NumOfMics = 4
         End If
-        For i As Integer = 2 To NumOfMics * 2 Step 2
-            Dim s As Series = New Series(i.ToString())
-            series.Add(s)
-            s.ChartType = type
-            s.IsVisibleInLegend = False
-            s.IsValueShownAsLabel = False
-            chart.Series.Add(s)
-        Next
+
 
     End Sub
     'Update function
@@ -77,6 +71,7 @@ Public Class LineGraph
     'private global vars
     Dim SecTextBox As MaskedTextBox
     Dim TimeInSec As Integer
+    Dim SetTimeButton As Button
 
     'constructor
     Public Sub New(ByVal loc As Point,
@@ -85,18 +80,46 @@ Public Class LineGraph
                    ByVal mode As Modes,
                    ByVal time As Integer
                    )
-        MyBase.New(loc, size, parent, SeriesChartType.Line, mode)
+        MyBase.New(loc, size, parent, mode)
+        'Offset the chart a bit to the right to allow room for the button and textbox
+        chart.Location = chart.Location + New Point(SetTimeButtonSize.Width, 0)
+        chart.Size = chart.Size - New Size(SecTextBoxSize.Width, 0)
+        'Set Time TextBox
         SecTextBox = New MaskedTextBox()
         Panel.Controls.Add(SecTextBox)
         SecTextBox.Font = New Font(SecTextBox.Font.FontFamily, SecTextFontSize)
         SecTextBox.Size = SecTextBoxSize
-        SecTextBox.Location = New Point(size.Width / 2 - SecTextBox.Size.Width / 2, size.Height - SecTextBoxSize.Height)
+        SecTextBox.Location = New Point(0, size.Height / 2)
         If time > 0 Then
             SecTextBox.Text = time.ToString()
             SecTextBox.Enabled = False
             SetTime(time)
         End If
         SecTextBox.Mask = "999" 'digits including empty spaces
+
+        'Set Time button
+        SetTimeButton = New Button()
+        Panel.Controls.Add(SetTimeButton)
+        SetTimeButton.Font = New Font(SetTimeButton.Font.FontFamily, SecTextFontSize)
+        SetTimeButton.Size = SetTimeButtonSize
+        SetTimeButton.Location = New Point(0, size.Height / 2 + SecTextBox.Size.Height)
+        SetTimeButton.Text = "Set"
+
+        'Set Chart zoomability
+        chart.ChartAreas(0).CursorY.IsUserSelectionEnabled = True
+        chart.ChartAreas(0).AxisY.IntervalAutoMode = IntervalAutoMode.FixedCount
+        chart.ChartAreas(0).AxisY.IsLabelAutoFit = False
+
+        'set up series
+        For i As Integer = 2 To NumOfMics * 2 Step 2
+            Dim s As Series = New Series(i.ToString())
+            series.Add(s)
+            s.ChartType = SeriesChartType.Line
+            s.IsVisibleInLegend = False
+            s.IsValueShownAsLabel = False
+            chart.Series.Add(s)
+        Next
+
     End Sub
 
     'Show initial chart
@@ -137,6 +160,7 @@ Public Class BarGraph
     Inherits CGraph
     'private global vars
     Dim Labels As List(Of Label)
+    Dim listOfNames As List(Of String)
 
     'constructor
     Public Sub New(ByVal loc As Point,
@@ -144,27 +168,25 @@ Public Class BarGraph
                    ByVal parent As Control,
                    ByVal mode As Modes)
 
-        MyBase.New(loc, size, parent, SeriesChartType.Column, mode)
+        MyBase.New(loc, size, parent, mode)
         Labels = New List(Of Label)
 
+        'set up series
+        Dim s As Series = New Series()
+        series.Add(s)
+        s.ChartType = SeriesChartType.Column
+        s.IsVisibleInLegend = False
+        s.IsValueShownAsLabel = False
+        chart.Series.Add(s)
+        listOfNames = New List(Of String)
+        Dim listOfPoints = New List(Of Double)
 
         For i As Integer = 0 To NumOfMics - 1
-            Dim tag As Integer = (i + 1) * 2
-            series(i).Points.AddXY(tag, 0)
-            Dim l As Label = New Label()
-            Labels.Add(l)
-            Panel.Controls.Add(l)
-            l.Name = "P" + tag.ToString()
-            l.AutoSize = True
-            l.Font = New Font(l.Font.FontFamily, 20)
-            l.ForeColor = System.Drawing.Color.Black
-            l.BackColor = System.Drawing.Color.White
-            l.Size = New Size(65, 20)
-            l.Location = New Point(50 * tag, 200)
-            l.Text = "P" + tag.ToString()
-            l.BringToFront()
-
+            Dim tag As String = "P" + CStr((i + 1) * 2)
+            listOfNames.Add(tag)
+            listOfPoints.Add(0)
         Next
+        series(0).Points.DataBindXY(listOfNames, listOfPoints)
 
     End Sub
 
@@ -173,10 +195,6 @@ Public Class BarGraph
         If Not newVal.Length = NumOfMics Then
             Return
         End If
-        For i As Integer = 0 To NumOfMics - 1
-            series(i).Points.Clear()
-            Dim tag As Integer = (i + 1) * 2
-            series(i).Points.AddXY(tag, newVal(i))
-        Next
+        series(0).Points.DataBindXY(listOfNames, newVal)
     End Sub
 End Class
