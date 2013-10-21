@@ -70,29 +70,290 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  查詢類似 高速怠轉(油門到底) 的當地語系化字串。
+        '''  查詢類似 最大挖掘半徑75%距地面0.5公尺高處，切刃背面與地面呈60度 的當地語系化字串。
         '''</summary>
-        Friend ReadOnly Property A2_step1() As String
+        Friend ReadOnly Property A2_Excavator_step1() As String
             Get
-                Return ResourceManager.GetString("A2_step1", resourceCulture)
+                Return ResourceManager.GetString("A2_Excavator_step1", resourceCulture)
             End Get
         End Property
         
         '''<summary>
-        '''  查詢類似 抓斗上舉至最高舉程之75%處(舉高X米) 的當地語系化字串。
+        '''  查詢類似 高速怠轉 的當地語系化字串。
         '''</summary>
-        Friend ReadOnly Property A2_step2() As String
+        Friend ReadOnly Property A2_Excavator_step2() As String
             Get
-                Return ResourceManager.GetString("A2_step2", resourceCulture)
+                Return ResourceManager.GetString("A2_Excavator_step2", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 抓斗移動至操作範圍50%，並保持距地面0.5公尺之高度 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A2_Excavator_step3() As String
+            Get
+                Return ResourceManager.GetString("A2_Excavator_step3", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 抓斗最大伸展高度之30% 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A2_Excavator_step4() As String
+            Get
+                Return ResourceManager.GetString("A2_Excavator_step4", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 吊桿向左方向旋轉90度 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A2_Excavator_step5() As String
+            Get
+                Return ResourceManager.GetString("A2_Excavator_step5", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 最大伸展高度之60%停 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A2_Excavator_step6() As String
+            Get
+                Return ResourceManager.GetString("A2_Excavator_step6", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 伸展至75%並使抓斗之切刃呈垂直時傾卸(外推黃錐卸土) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A2_Excavator_step7() As String
+            Get
+                Return ResourceManager.GetString("A2_Excavator_step7", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 向右迴轉90度 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A2_Excavator_step8() As String
+            Get
+                Return ResourceManager.GetString("A2_Excavator_step8", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 回致原先之位置(下降回紅錐) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A2_Excavator_step9() As String
+            Get
+                Return ResourceManager.GetString("A2_Excavator_step9", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 吊桿向左方向旋轉45度 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A2_Loader_Excavator_step5() As String
+            Get
+                Return ResourceManager.GetString("A2_Loader_Excavator_step5", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 向右迴轉45度 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A2_Loader_Excavator_step8() As String
+            Get
+                Return ResourceManager.GetString("A2_Loader_Excavator_step8", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 高速怠轉(油門到底) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A2_Loader_step1() As String
+            Get
+                Return ResourceManager.GetString("A2_Loader_step1", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 抓斗上舉制最高舉程之75%處(舉高X米) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A2_Loader_step2() As String
+            Get
+                Return ResourceManager.GetString("A2_Loader_step2", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  查詢類似 再回復至原始位置(放下) 的當地語系化字串。
         '''</summary>
-        Friend ReadOnly Property A2_step3() As String
+        Friend ReadOnly Property A2_Loader_step3() As String
             Get
-                Return ResourceManager.GetString("A2_step3", resourceCulture)
+                Return ResourceManager.GetString("A2_Loader_step3", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 抓斗底距地面0.3公尺±0.05公尺(起點紅錐斗高1尺) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A3_Loader_step1() As String
+            Get
+                Return ResourceManager.GetString("A3_Loader_step1", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 引擎高速怠轉(高速怠轉) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A3_Loader_step2() As String
+            Get
+                Return ResourceManager.GetString("A3_Loader_step2", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 履帶式前進速度儘量接近且不超過4公里/小時，膠輪式前進速度儘量接近且不超過8公里/小時(低檔前進白錐) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A3_Loader_step3() As String
+            Get
+                Return ResourceManager.GetString("A3_Loader_step3", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 後退行走與速度無關，可使用適宜之變速檔。(後退回紅錐) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A3_Loader_step4() As String
+            Get
+                Return ResourceManager.GetString("A3_Loader_step4", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 排土板為標準裝置，距地面高0.3公尺±0.05公尺(起點紅錐板高1尺) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A3_Tractor_step1() As String
+            Get
+                Return ResourceManager.GetString("A3_Tractor_step1", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 高速怠轉(油門到底) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A3_Tractor_step2() As String
+            Get
+                Return ResourceManager.GetString("A3_Tractor_step2", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 膠輪式於堅硬反射面行走，前進速度儘量接近且不超過每小時8公里，履帶式及鋼輪式於砂土上行走，前進速度儘量接近且不超過每小時4公里(前進至白錐)(停) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A3_Tractor_step3() As String
+            Get
+                Return ResourceManager.GetString("A3_Tractor_step3", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 後退速度則視情況使用變速檔。(後退回紅錐) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A3_Tractor_step4() As String
+            Get
+                Return ResourceManager.GetString("A3_Tractor_step4", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 定置高速怠轉狀態。(全速空轉) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A4_Asphalt_Finisher() As String
+            Get
+                Return ResourceManager.GetString("A4_Asphalt_Finisher", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 定置高速怠轉。(全速空轉) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A4_Auger_Drill_Driver() As String
+            Get
+                Return ResourceManager.GetString("A4_Auger_Drill_Driver", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 原則上定數回轉與定額負載之狀態。(定速定載) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A4_Compressor() As String
+            Get
+                Return ResourceManager.GetString("A4_Compressor", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 以規定之工作壓力為測定作業狀態，將鑿桿(chisel)強烈押在控制板，須避免組裝部分影響測值。作業者不可站在噪音測線上 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A4_Concrete_Breaker() As String
+            Get
+                Return ResourceManager.GetString("A4_Concrete_Breaker", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 以定速回轉切割混凝土，深度為刀片直徑之1/4 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A4_Concrete_Cutter() As String
+            Get
+                Return ResourceManager.GetString("A4_Concrete_Cutter", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 以最大之運轉狀態壓送混凝土，此時吊桿應向水平方向延伸，配管長度約為10公尺。(最大之運轉狀態壓送混凝土) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A4_Concrete_Pump() As String
+            Get
+                Return ResourceManager.GetString("A4_Concrete_Pump", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 吊桿之角度為60度，勾子抓斗等以上卷狀態，定置高速怠轉。(全速空轉) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A4_Crane() As String
+            Get
+                Return ResourceManager.GetString("A4_Crane", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 無負載定速回轉(60Hz)。(無負載定速回轉) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A4_Generator() As String
+            Get
+                Return ResourceManager.GetString("A4_Generator", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 可裝載道碴之機具，以裝載最大量之狀態，定置高速怠轉。(滿載全速空轉) 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A4_Roller() As String
+            Get
+                Return ResourceManager.GetString("A4_Roller", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查詢類似 吊在空中之狀態，不超過地面上50公分為原則並使其產生最大振動數 的當地語系化字串。
+        '''</summary>
+        Friend ReadOnly Property A4_Vibrating_Hammer() As String
+            Get
+                Return ResourceManager.GetString("A4_Vibrating_Hammer", resourceCulture)
             End Get
         End Property
         

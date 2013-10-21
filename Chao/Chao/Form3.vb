@@ -40,7 +40,26 @@ Public Class Program
     Dim Points As ArrayList
 
     Dim timeLeft As Integer
-    Dim status As Integer
+    Dim status As Integer  'status=1==>A1+A2  ,status=2==>A1+A3  ,status=3==>A1+A2+A3  ,status=4==>A4
+    Dim state As Integer   'state表示現在正在測的是A1 or A2 or A3 or A4
+
+    '手動設秒數 = false  ,  自動設30s = true
+    Dim auto As Boolean
+
+    'sStep==>循環開始(start)的步驟 ,eStep==>循環的最後一個(end)步驟
+    Dim sStep As Integer
+    Dim eStep As Integer
+
+    'pass 為是否接受數據還是要加測
+    Dim pass As Integer
+
+    Dim TimeofStep(1, 8) As Double
+    Dim array_step(8) As Label
+
+    '紀錄a2 a3跑到哪個步驟
+    Dim A2_step As Integer
+    Dim A3_step As Integer
+
 
     Public Sub New()
 
@@ -77,16 +96,36 @@ Public Class Program
         yLabel.Parent = GroupBox_Plot
         GroupBox_Plot.BackColor = Color.Transparent
 
+        light_preCal.BackColor = Color.Red
         light_BG.BackColor = Color.Red
         light_1st.BackColor = Color.Red
         light_2nd.BackColor = Color.Red
         light_3rd.BackColor = Color.Red
         light_Additional.BackColor = Color.Red
         light_RSS.BackColor = Color.Red
+        light_postCal.BackColor = Color.Red
+
+        LinkLabel_A1.Enabled = False
+        LinkLabel_A2.Enabled = False
+        LinkLabel_A3.Enabled = False
+        LinkLabel_A4.Enabled = False
 
         startButton.Enabled = True
         stopButton.Enabled = False
         continueButton.Enabled = False
+
+        array_step(0) = Step1
+        array_step(1) = Step2
+        array_step(2) = Step3
+        array_step(3) = Step4
+        array_step(4) = Step5
+        array_step(5) = Step6
+        array_step(6) = Step7
+        array_step(7) = Step8
+        array_step(8) = Step9
+
+        A2_step = 0
+        A3_step = 0
 
         Noise1.Text = 100
         Noise2.Text = 105
@@ -141,31 +180,53 @@ Public Class Program
 
 
         'location of all objects
-        light_BG.Location = New Point(19, 17)
-        light_1st.Location = New Point(19, 57)
-        light_2nd.Location = New Point(19, 97)
-        light_3rd.Location = New Point(19, 137)
-        light_Additional.Location = New Point(19, 177)
-        light_RSS.Location = New Point(19, 217)
+        light_preCal.Location = New Point(19, 17)
+        light_BG.Location = New Point(19, 57)
+        light_1st.Location = New Point(19, 97)
+        light_2nd.Location = New Point(19, 137)
+        light_3rd.Location = New Point(19, 177)
+        light_Additional.Location = New Point(19, 217)
+        light_RSS.Location = New Point(19, 257)
+        light_postCal.Location = New Point(19, 297)
+        light_A1.Location = New Point(19, 508)
+        light_A2.Location = New Point(19, 548)
+        light_A3.Location = New Point(19, 588)
+        light_A4.Location = New Point(19, 628)
 
-        LinkLabel_BG.Location = New Point(50, 22)
-        LinkLabel_1st.Location = New Point(50, 62)
-        LinkLabel_2nd.Location = New Point(50, 102)
-        LinkLabel_3rd.Location = New Point(50, 142)
-        LinkLabel_Additional.Location = New Point(50, 182)
-        LinkLabel_RSS.Location = New Point(50, 222)
+        LinkLabel_preCal.Location = New Point(50, 22)
+        LinkLabel_BG.Location = New Point(50, 62)
+        LinkLabel_1st.Location = New Point(50, 102)
+        LinkLabel_2nd.Location = New Point(50, 142)
+        LinkLabel_3rd.Location = New Point(50, 182)
+        LinkLabel_Additional.Location = New Point(50, 222)
+        LinkLabel_RSS.Location = New Point(50, 262)
+        LinkLabel_postCal.Location = New Point(50, 302)
+        LinkLabel_A1.Location = New Point(50, 513)
+        LinkLabel_A2.Location = New Point(50, 553)
+        LinkLabel_A3.Location = New Point(50, 593)
+        LinkLabel_A4.Location = New Point(50, 633)
 
-        startButton.Location = New Point(9, 274)
-        timeLabel.Location = New Point(9, 300)
-        stopButton.Location = New Point(9, 381)
-        continueButton.Location = New Point(90, 381)
+        startButton.Location = New Point(9, 354)
+        timeLabel.Location = New Point(9, 380)
+        stopButton.Location = New Point(9, 461)
+        continueButton.Location = New Point(90, 461)
 
-        Noise1.Location = New Point(246, 300)
-        Noise2.Location = New Point(319, 300)
-        Noise3.Location = New Point(392, 300)
-        Noise4.Location = New Point(465, 300)
-        Noise5.Location = New Point(538, 300)
-        Noise6.Location = New Point(611, 300)
+        Noise1.Location = New Point(246, 580)
+        Noise2.Location = New Point(319, 580)
+        Noise3.Location = New Point(392, 580)
+        Noise4.Location = New Point(465, 580)
+        Noise5.Location = New Point(538, 580)
+        Noise6.Location = New Point(611, 580)
+
+        Step1.Location = New Point(703, 22)
+        Step2.Location = New Point(703, 84)
+        Step3.Location = New Point(703, 146)
+        Step4.Location = New Point(703, 208)
+        Step5.Location = New Point(703, 270)
+        Step6.Location = New Point(703, 332)
+        Step7.Location = New Point(703, 394)
+        Step8.Location = New Point(703, 456)
+        Step9.Location = New Point(703, 518)
     End Sub
 
 
@@ -244,7 +305,7 @@ Public Class Program
                 zText = "0"
             End If
             coors(index).Label.Text = "(" + xText + " , " + yText + " , " + zText + ")"
-            coors(index).Label.Location = translate(New System.Drawing.Point(origin(0) + x, origin(1) - y), GroupBox_Plot.Location + canvas.Location, TabPage1.Location)
+            coors(index).Label.Location = translate(New System.Drawing.Point(origin(0) + x, origin(1) - y), GroupBox_Plot.Location, TabPage1.Location)
             coors(index).Label.BringToFront()
         Next
     End Sub
@@ -262,56 +323,173 @@ Public Class Program
 
     Private Sub ComboBox_machine_list_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBox_machine_list.SelectedIndexChanged
         Dim mach As Integer
-        If ComboBox_machine_list.Text = "開挖機" Then
+
+        'step1~9清空
+        Step1.Text = ""
+        Step2.Text = ""
+        Step3.Text = ""
+        Step4.Text = ""
+        Step5.Text = ""
+        Step6.Text = ""
+        Step7.Text = ""
+        Step8.Text = ""
+        Step9.Text = ""
+        Step1.BackColor = Color.DarkGray
+        Step2.BackColor = Color.DarkGray
+        Step3.BackColor = Color.DarkGray
+        Step4.BackColor = Color.DarkGray
+        Step5.BackColor = Color.DarkGray
+        Step6.BackColor = Color.DarkGray
+        Step7.BackColor = Color.DarkGray
+        Step8.BackColor = Color.DarkGray
+        Step9.BackColor = Color.DarkGray
+
+        'A1+A2
+        If ComboBox_machine_list.Text = "開挖機(Excavator)" Then
             Picture_machine.Image = My.Resources.Resource1.小型開挖機_compact_excavator_
             mach = 1
             status = 1
         End If
-        If ComboBox_machine_list.Text = "拖索開挖機" Then
-            Picture_machine.Image = My.Resources.Resource1.小型膠輪式裝料機_compact_loader__wheeled_
+
+        'A1+A3
+        If ComboBox_machine_list.Text = "推土機(Crawler and wheel tractor)" Then
+            Picture_machine.Image = My.Resources.Resource1.履帶式推土機_crawler_dozer_
             mach = 1
             status = 2
         End If
-        If ComboBox_machine_list.Text = "抓斗開挖機" Then
-            Picture_machine.Image = My.Resources.Resource1.滑移裝料機_skid_steer_loader_
+        If ComboBox_machine_list.Text = "鐵輪壓路機(Road roller)" Then
+            Picture_machine.Image = My.Resources.Resource1.壓路機_rollers_
             mach = 1
+            status = 2
         End If
-        If ComboBox_machine_list.Text = "履帶起重機" Then
-            Picture_machine.Image = My.Resources.Resource1.履帶式開挖裝料機_crawler_backhoe_loader_
+        If ComboBox_machine_list.Text = "膠輪壓路機(Wheel roller)" Then
+            Picture_machine.Image = My.Resources.Resource1.壓路機_rollers_
             mach = 1
+            status = 2
         End If
-        If ComboBox_machine_list.Text = "推土機" Then
-            Picture_machine.Image = My.Resources.Resource1.履帶式推土機_crawler_dozer_
+        If ComboBox_machine_list.Text = "振動式壓路機(Vibrating roller)" Then
+            Picture_machine.Image = My.Resources.Resource1.壓路機_rollers_
             mach = 1
+            status = 2
         End If
-        If ComboBox_machine_list.Text = "牽引裝料機" Then
+
+        'A1+A2+A3
+        If ComboBox_machine_list.Text = "裝料機(Crawler and wheel loader)" Then
             Picture_machine.Image = My.Resources.Resource1.履帶式裝料機_crawler_loader_
             mach = 1
+            status = 3
         End If
-        If ComboBox_machine_list.Text = "振動式打樁機" Then
-            Picture_machine.Image = My.Resources.Resource1.履帶式開挖機_crawler_excavator_
-            mach = 2
+        If ComboBox_machine_list.Text = "裝料開挖機" Then
+            Picture_machine.Image = My.Resources.Resource1.履帶式開挖裝料機_crawler_backhoe_loader_
+            mach = 1
+            status = 3
         End If
-        If ComboBox_machine_list.Text = "鑽岩機" Then
+
+        'A4
+        If ComboBox_machine_list.Text = "履帶起重機(Crawler crane)" Then
             Picture_machine.Image = My.Resources.Resource1.膠輪式推土機_wheeled_dozer_
             mach = 2
+            Step1.Text = My.Resources.A4_Crane
+            Step1.BackColor = Color.MistyRose
         End If
-        If ComboBox_machine_list.Text = "壓路機" Then
+        If ComboBox_machine_list.Text = "卡車起重機(Truck crane)" Then
             Picture_machine.Image = My.Resources.Resource1.膠輪式開挖裝料機_wheeled_backhoe_loader_
             mach = 2
+            Step1.Text = My.Resources.A4_Crane
+            Step1.BackColor = Color.MistyRose
         End If
-        If ComboBox_machine_list.Text = "輪胎式壓路機" Then
+        If ComboBox_machine_list.Text = "輪形起重機(Wheel crane)" Then
             Picture_machine.Image = My.Resources.Resource1.膠輪式開挖機_wheeled_excavator_
             mach = 2
+            Step1.Text = My.Resources.A4_Crane
+            Step1.BackColor = Color.MistyRose
         End If
-        If ComboBox_machine_list.Text = "振動式壓路機" Then
+        If ComboBox_machine_list.Text = "振動式樁錘(Vibrating hammer)" Then
             Picture_machine.Image = My.Resources.Resource1.膠輪式裝料機_wheeled_loader_
             mach = 2
+            Step1.Text = My.Resources.A4_Vibrating_Hammer
+            Step1.BackColor = Color.MistyRose
         End If
-        If ComboBox_machine_list.Text = "混凝土割切機" Then
+        If ComboBox_machine_list.Text = "油壓式打樁機(Hydraulic pile driver)" Then
             Picture_machine.Image = My.Resources.Resource1.壓路機_rollers_
             mach = 2
+            Step1.Text = My.Resources.A4_Auger_Drill_Driver
+            Step1.BackColor = Color.MistyRose
         End If
+        If ComboBox_machine_list.Text = "拔樁機" Then
+            Picture_machine.Image = My.Resources.Resource1.小型開挖機_compact_excavator_
+            mach = 2
+            Step1.Text = My.Resources.A4_Auger_Drill_Driver
+            Step1.BackColor = Color.MistyRose
+        End If
+        If ComboBox_machine_list.Text = "油壓式拔樁機" Then
+            Picture_machine.Image = My.Resources.Resource1.小型膠輪式裝料機_compact_loader__wheeled_
+            mach = 2
+            Step1.Text = My.Resources.A4_Auger_Drill_Driver
+            Step1.BackColor = Color.MistyRose
+        End If
+        If ComboBox_machine_list.Text = "土壤取樣器(地鑽) (Earth auger)" Then
+            Picture_machine.Image = My.Resources.Resource1.滑移裝料機_skid_steer_loader_
+            mach = 2
+            Step1.Text = My.Resources.A4_Auger_Drill_Driver
+            Step1.BackColor = Color.MistyRose
+        End If
+        If ComboBox_machine_list.Text = "全套管鑽掘機" Then
+            Picture_machine.Image = My.Resources.Resource1.履帶式開挖裝料機_crawler_backhoe_loader_
+            mach = 2
+            Step1.Text = My.Resources.A4_Auger_Drill_Driver
+            Step1.BackColor = Color.MistyRose
+        End If
+        If ComboBox_machine_list.Text = "鑽土機(Earth drill)" Then
+            Picture_machine.Image = My.Resources.Resource1.履帶式推土機_crawler_dozer_
+            mach = 2
+            Step1.Text = My.Resources.A4_Auger_Drill_Driver
+            Step1.BackColor = Color.MistyRose
+        End If
+        If ComboBox_machine_list.Text = "鑽岩機(Rock breaker)" Then
+            Picture_machine.Image = My.Resources.Resource1.履帶式裝料機_crawler_loader_
+            mach = 2
+            Step1.Text = My.Resources.A4_Auger_Drill_Driver
+            Step1.BackColor = Color.MistyRose
+        End If
+        If ComboBox_machine_list.Text = "混凝土泵車(Concrete pump)" Then
+            Picture_machine.Image = My.Resources.Resource1.履帶式開挖機_crawler_excavator_
+            mach = 2
+            Step1.Text = My.Resources.A4_Concrete_Pump
+            Step1.BackColor = Color.MistyRose
+        End If
+        If ComboBox_machine_list.Text = "混凝土破碎機(Concrete breaker)" Then
+            Picture_machine.Image = My.Resources.Resource1.膠輪式推土機_wheeled_dozer_
+            mach = 2
+            Step1.Text = My.Resources.A4_Concrete_Breaker
+            Step1.BackColor = Color.MistyRose
+        End If
+        If ComboBox_machine_list.Text = "瀝青混凝土舖築機(Asphalt finisher)" Then
+            Picture_machine.Image = My.Resources.Resource1.膠輪式開挖裝料機_wheeled_backhoe_loader_
+            mach = 2
+            Step1.Text = My.Resources.A4_Asphalt_Finisher
+            Step1.BackColor = Color.MistyRose
+        End If
+        If ComboBox_machine_list.Text = "混凝土割切機(Concrete cutter)" Then
+            Picture_machine.Image = My.Resources.Resource1.膠輪式開挖機_wheeled_excavator_
+            mach = 2
+            Step1.Text = My.Resources.A4_Concrete_Cutter
+            Step1.BackColor = Color.MistyRose
+        End If
+        If ComboBox_machine_list.Text = "發電機(Generator)" Then
+            Picture_machine.Image = My.Resources.Resource1.膠輪式裝料機_wheeled_loader_
+            mach = 2
+            Step1.Text = My.Resources.A4_Generator
+            Step1.BackColor = Color.MistyRose
+        End If
+        If ComboBox_machine_list.Text = "空氣壓縮機(Compressor)" Then
+            Picture_machine.Image = My.Resources.Resource1.壓路機_rollers_
+            mach = 2
+            Step1.Text = My.Resources.A4_Compressor
+            Step1.BackColor = Color.MistyRose
+        End If
+
+        'mach區分要輸入至哪個groupbox
         If mach = 1 Then
             GroupBox_A1_A2_A3.Enabled = True
             GroupBox_A4.Enabled = False
@@ -319,8 +497,28 @@ Public Class Program
         If mach = 2 Then
             GroupBox_A1_A2_A3.Enabled = False
             GroupBox_A4.Enabled = True
+            status = 0
+            auto = True
+
+            'light A1 A2 A3和linklabel A1 A2 A3 要 disable
+            light_A1.BackColor = Color.DarkGray
+            light_A2.BackColor = Color.DarkGray
+            light_A3.BackColor = Color.DarkGray
+            light_A4.BackColor = Color.Red
+
+            LinkLabel_A1.Enabled = False
+            LinkLabel_A2.Enabled = False
+            LinkLabel_A3.Enabled = False
+            LinkLabel_A4.Enabled = True
+            'time of step
+            TimeofStep(0, 0) = 30
+            TimeofStep(1, 0) = -1 'timeofstep(1,0)=-1 用來判別表A4狀態
+
         End If
-        If status = 1 Then
+
+        'status 1,2,3 從A1開始做
+        If status = 1 Or status = 2 Or status = 3 Then
+            'step1~9清空
             Step1.Text = ""
             Step2.Text = ""
             Step3.Text = ""
@@ -329,11 +527,43 @@ Public Class Program
             Step6.Text = ""
             Step7.Text = ""
             Step8.Text = ""
-
+            Step9.Text = ""
+            'load A1_step1
             Step1.Text = My.Resources.A1_step1
-
+            Step1.BackColor = Color.Orange
+            state = 1
+            'time of step
+            TimeofStep(0, 0) = 30
+            TimeofStep(1, 0) = 3
+            Step2.Text = "循環剩餘次數 : " & TimeofStep(1, 0) & " 次"
+            'A1固定30s  auto改true 
+            auto = True
+            'A4 disable A1 enable
+            light_A4.BackColor = Color.DarkGray
+            LinkLabel_A4.Enabled = False
+            light_A1.BackColor = Color.Red
+            LinkLabel_A1.Enabled = True
+            If status = 1 Then
+                light_A3.BackColor = Color.DarkGray
+                LinkLabel_A3.Enabled = False
+                light_A2.BackColor = Color.Red
+                LinkLabel_A2.Enabled = True
+            End If
+            If status = 2 Then
+                light_A2.BackColor = Color.DarkGray
+                LinkLabel_A2.Enabled = False
+                light_A3.BackColor = Color.Red
+                LinkLabel_A3.Enabled = True
+            End If
+            If status = 3 Then
+                light_A3.BackColor = Color.Red
+                LinkLabel_A3.Enabled = True
+                light_A2.BackColor = Color.Red
+                LinkLabel_A2.Enabled = True
+            End If
         End If
-        If status = 2 Then
+
+        If ComboBox_machine_list.Text = "A1+A2" Or ComboBox_machine_list.Text = "A1+A3" Or ComboBox_machine_list.Text = "A1+A2+A3" Or ComboBox_machine_list.Text = "A4" Then
             Step1.Text = ""
             Step2.Text = ""
             Step3.Text = ""
@@ -342,10 +572,17 @@ Public Class Program
             Step6.Text = ""
             Step7.Text = ""
             Step8.Text = ""
+            Step9.Text = ""
 
-            Step1.Text = My.Resources.A2_step1
-            Step2.Text = My.Resources.A2_step2
-            Step3.Text = My.Resources.A2_step3
+            light_A1.BackColor = Color.DarkGray
+            light_A2.BackColor = Color.DarkGray
+            light_A3.BackColor = Color.DarkGray
+            light_A4.BackColor = Color.DarkGray
+
+            LinkLabel_A1.Enabled = False
+            LinkLabel_A2.Enabled = False
+            LinkLabel_A3.Enabled = False
+            LinkLabel_A4.Enabled = False
         End If
     End Sub
 
@@ -442,13 +679,257 @@ Public Class Program
     End Sub
 
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
-        If (timeLeft > 0) Then
+        If timeLeft > 0 Then
             timeLeft = timeLeft - 1
             timeLabel.Text = timeLeft & " s"
-        Else
+        End If
+        If timeLeft = 0 Then
             Timer1.Stop()
             timeLabel.Text = "Time's up!"
             startButton.Enabled = True
+            If A2_step > 0 Then
+                A2_step += 1
+                If A2_step > eStep Then
+                    A2_step = sStep
+                End If
+            End If
+            If A3_step > 0 Then
+                A3_step += 1
+                If A3_step > eStep Then
+                    A3_step = sStep
+                End If
+            End If
+            'A1改燈號
+            If TimeofStep(0, 0) = 30 And TimeofStep(1, 0) = 0 And state = 1 Then
+                If light_1st.BackColor = Color.Red Then
+                    TimeofStep(1, 0) = 3
+                    light_1st.BackColor = Color.DarkGreen
+                    light_2nd.BackColor = Color.LightGreen
+                ElseIf light_2nd.BackColor = Color.LightGreen Then
+                    TimeofStep(1, 0) = 3
+                    light_2nd.BackColor = Color.DarkGreen
+                    light_3rd.BackColor = Color.LightGreen
+                ElseIf light_3rd.BackColor = Color.LightGreen Then
+                    TimeofStep(0, 0) = 0
+                    light_3rd.BackColor = Color.DarkGreen
+                    '這裡計算是否要加測or接收數據
+                    pass = 1  '目前假設不加測
+                    'if 加測==>additional
+                    'else 接收數據==>判斷下一步是A2還是A3
+                    '判斷完設定狀態及載入步驟
+                    If pass = 1 Then
+                        '下一步是A2
+                        '設定參數
+                        light_A1.BackColor = Color.DarkGreen
+                        If status = 1 Or status = 3 Then
+                            A2_step = 1
+                            'if A1+A2===>excavator
+                            If status = 1 Then
+                                '清空所有steps
+                                Step1.Text = ""
+                                Step2.Text = ""
+                                Step3.Text = ""
+                                Step4.Text = ""
+                                Step5.Text = ""
+                                Step6.Text = ""
+                                Step7.Text = ""
+                                Step8.Text = ""
+                                Step9.Text = ""
+
+                                '改手動輸入秒數
+                                auto = False
+                                '設定該循環的步驟
+                                sStep = 2
+                                eStep = 9
+
+                                '載入步驟
+                                Step1.Text = My.Resources.A2_Excavator_step1
+                                Step1.BackColor = Color.MistyRose
+                                Step2.Text = My.Resources.A2_Excavator_step2
+                                Step2.BackColor = Color.Orange
+                                Step3.Text = My.Resources.A2_Excavator_step3
+                                Step3.BackColor = Color.Orange
+                                Step4.Text = My.Resources.A2_Excavator_step4
+                                Step4.BackColor = Color.Orange
+                                Step5.Text = My.Resources.A2_Excavator_step5
+                                Step5.BackColor = Color.Orange
+                                Step6.Text = My.Resources.A2_Excavator_step6
+                                Step6.BackColor = Color.Orange
+                                Step7.Text = My.Resources.A2_Excavator_step7
+                                Step7.BackColor = Color.Orange
+                                Step8.Text = My.Resources.A2_Excavator_step8
+                                Step8.BackColor = Color.Orange
+                                Step9.Text = My.Resources.A2_Excavator_step9
+                                Step9.BackColor = Color.Orange
+                                state = 2
+                                '設定timeofstep array 中的值
+                                For index = 0 To eStep - 1
+                                    TimeofStep(0, index) = 5
+                                    If index > sStep - 2 Then
+                                        TimeofStep(1, index) = 3
+                                    Else
+                                        TimeofStep(1, index) = 0
+                                    End If
+                                Next
+                                '1st 2nd 3rd 燈號變換
+                                light_1st.BackColor = Color.LightGreen
+                                light_2nd.BackColor = Color.Red
+                                light_3rd.BackColor = Color.Red
+
+                            End If
+                            'if A1+A2+A3==>
+                            If status = 3 Then
+                                '清空所有steps
+                                Step1.Text = ""
+                                Step2.Text = ""
+                                Step3.Text = ""
+                                Step4.Text = ""
+                                Step5.Text = ""
+                                Step6.Text = ""
+                                Step7.Text = ""
+                                Step8.Text = ""
+                                Step9.Text = ""
+
+                                '改手動輸入秒數
+                                auto = False
+                                '設定該循環的步驟
+                                sStep = 2
+                                eStep = 3
+
+                                '載入步驟
+                                Step1.Text = My.Resources.A2_Loader_step1
+                                Step1.BackColor = Color.MistyRose
+                                Step2.Text = My.Resources.A2_Loader_step2
+                                Step2.BackColor = Color.Orange
+                                Step3.Text = My.Resources.A2_Loader_step3
+                                Step3.BackColor = Color.Orange
+                                Step4.BackColor = Color.DarkGray
+                                Step5.BackColor = Color.DarkGray
+                                Step6.BackColor = Color.DarkGray
+                                Step7.BackColor = Color.DarkGray
+                                Step8.BackColor = Color.DarkGray
+                                Step9.BackColor = Color.DarkGray
+                                state = 2
+                                '設定timeofstep array 中的值
+                                For i = 0 To eStep - 1
+                                    TimeofStep(0, i) = 5
+                                Next
+                                For j = sStep - 1 To eStep - 1
+                                    TimeofStep(0, j) = 3
+                                Next
+                                '1st 2nd 3rd 燈號變換
+                                light_1st.BackColor = Color.LightGreen
+                                light_2nd.BackColor = Color.Red
+                                light_3rd.BackColor = Color.Red
+                            End If
+                            MessageBox.Show("A2測量開始")
+                            light_A2.BackColor = Color.LightGreen
+                        End If
+                        '下一步是A3
+                        '設定參數
+                        'if A1+A3==>tractor
+                        If status = 2 Then
+                            A3_step = 1
+                            '清空所有steps
+                            Step1.Text = ""
+                            Step2.Text = ""
+                            Step3.Text = ""
+                            Step4.Text = ""
+                            Step5.Text = ""
+                            Step6.Text = ""
+                            Step7.Text = ""
+                            Step8.Text = ""
+                            Step9.Text = ""
+
+                            '改手動輸入秒數
+                            auto = False
+                            '設定該循環的步驟
+                            sStep = 3
+                            eStep = 4
+
+                            '載入步驟
+                            Step1.Text = My.Resources.A3_Tractor_step1
+                            Step1.BackColor = Color.MistyRose
+                            Step2.Text = My.Resources.A3_Tractor_step2
+                            Step2.BackColor = Color.MistyRose
+                            Step3.Text = My.Resources.A3_Tractor_step3
+                            Step3.BackColor = Color.Orange
+                            Step4.Text = My.Resources.A3_Tractor_step4
+                            Step4.BackColor = Color.Orange
+                            Step5.BackColor = Color.DarkGray
+                            Step6.BackColor = Color.DarkGray
+                            Step7.BackColor = Color.DarkGray
+                            Step8.BackColor = Color.DarkGray
+                            Step9.BackColor = Color.DarkGray
+                            state = 3
+                            '設定timeofstep array 中的值
+                            For i = 0 To eStep - 1
+                                TimeofStep(0, i) = 5
+                            Next
+                            For j = sStep - 1 To eStep - 1
+                                TimeofStep(0, j) = 3
+                            Next
+                            '1st 2nd 3rd 燈號變換
+                            light_1st.BackColor = Color.LightGreen
+                            light_2nd.BackColor = Color.Red
+                            light_3rd.BackColor = Color.Red
+                            MessageBox.Show("A3測量開始")
+                            light_A3.BackColor = Color.LightGreen
+                        End If
+                    End If
+                End If
+            End If
+            'A2改燈號
+            If state = 2 And status = 1 And TimeofStep(1, 8) = 0 Then
+                If light_1st.BackColor = Color.LightGreen Then
+                    For index = sStep - 1 To eStep - 1
+                        TimeofStep(1, index) = 3
+                    Next
+                    light_1st.BackColor = Color.DarkGreen
+                    light_2nd.BackColor = Color.LightGreen
+                    A2_step = 1
+                ElseIf light_2nd.BackColor = Color.LightGreen Then
+                    For index = sStep - 1 To eStep - 1
+                        TimeofStep(1, index) = 3
+                    Next
+                    light_2nd.BackColor = Color.DarkGreen
+                    light_3rd.BackColor = Color.LightGreen
+                    A2_step = 1
+                ElseIf light_3rd.BackColor = Color.LightGreen Then
+                    TimeofStep(0, 0) = 0
+                    light_3rd.BackColor = Color.DarkGreen
+                    MessageBox.Show("測量結束")
+                    light_A2.BackColor = Color.DarkGreen
+                End If
+            End If
+            If state = 2 And status = 3 And TimeofStep(1, 2) = 0 Then
+
+            End If
+            'A3改燈號
+            If state = 3 And status = 2 And TimeofStep(1, 3) = 0 Then
+
+            End If
+            If state = 3 And status = 3 And TimeofStep(1, 3) = 0 Then
+
+            End If
+            'A4改燈號
+            If TimeofStep(0, 0) = 30 And TimeofStep(1, 0) = -2 And state = 4 Then
+                If light_1st.BackColor = Color.Red Then
+                    TimeofStep(1, 0) = -1
+                    light_1st.BackColor = Color.DarkGreen
+                    light_2nd.BackColor = Color.LightGreen
+                ElseIf light_2nd.BackColor = Color.LightGreen Then
+                    TimeofStep(1, 0) = -1
+                    light_2nd.BackColor = Color.DarkGreen
+                    light_3rd.BackColor = Color.LightGreen
+                ElseIf light_3rd.BackColor = Color.LightGreen Then
+                    TimeofStep(0, 0) = 0
+                    light_3rd.BackColor = Color.DarkGreen
+                    '這裡計算是否要加測or接收數據
+                    'if 加測==>additional ==>加測完還要再計算
+                    'else 接收數據==>A4亮綠燈
+                End If
+            End If
         End If
 
         Noise1.Text = Noise1.Text - 1
@@ -461,9 +942,52 @@ Public Class Program
         stopButton.Enabled = True
         continueButton.Enabled = False
 
-        timeLeft = 30
-        timeLabel.Text = "30 s"
-        Timer1.Start()
+        'case A1
+        If TimeofStep(0, 0) = 30 And TimeofStep(1, 0) > 0 And state = 1 Then
+            timeLeft = TimeofStep(0, 0)
+            TimeofStep(1, 0) = TimeofStep(1, 0) - 1
+            Step1.ForeColor = Color.Red
+            Step2.Text = "循環剩餘次數 : " & TimeofStep(1, 0) & " 次"
+            timeLabel.Text = timeLeft & " s"
+            Timer1.Start()
+        End If
+        'case A2
+        If state = 2 And status = 1 Then
+            timeLeft = TimeofStep(0, A2_step - 1)
+            If A2_step + 1 > sStep Then
+                TimeofStep(1, A2_step - 1) = TimeofStep(1, A2_step - 1) - 1
+            End If
+            If A2_step + 1 > eStep Then
+                array_step(A2_step - 1).ForeColor = Color.Red
+                array_step(A2_step - 2).ForeColor = Color.Black
+                A2_step = sStep - 1
+            Else
+                If A2_step - 1 > 0 Then
+                    array_step(A2_step - 2).ForeColor = Color.Black
+                End If
+                array_step(A2_step - 1).ForeColor = Color.Red
+            End If
+            timeLabel.Text = timeLeft & " s"
+            Timer1.Start()
+        End If
+        If state = 2 And status = 3 Then
+
+        End If
+        'case A3
+        If state = 3 And status = 2 Then
+
+        End If
+        If state = 3 And status = 3 Then
+
+        End If
+        'case A4
+        If TimeofStep(0, 0) = 30 And TimeofStep(1, 0) = -1 And state = 4 Then
+            timeLeft = TimeofStep(0, 0)
+            TimeofStep(1, 0) = TimeofStep(1, 0) - 1
+            Step1.ForeColor = Color.Red
+            timeLabel.Text = timeLeft & " s"
+            Timer1.Start()
+        End If
     End Sub
 
     Private Sub stopButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles stopButton.Click
@@ -480,6 +1004,13 @@ Public Class Program
         Timer1.Start()
     End Sub
 
+
+    Private Sub LinkLabel_preCal_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel_preCal.LinkClicked
+        If MessageBox.Show("前校正已測量完畢且接受此數據?", "My application", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            light_preCal.BackColor = Color.DarkGreen
+            light_BG.BackColor = Color.LightGreen
+        End If
+    End Sub
     Private Sub LinkLabel_BG_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel_BG.LinkClicked
         If MessageBox.Show("背景噪音已測量完畢且接受此數據?", "My application", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
             light_BG.BackColor = Color.DarkGreen
@@ -518,9 +1049,191 @@ Public Class Program
     Private Sub LinkLabel_RSS_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel_RSS.LinkClicked
         If MessageBox.Show("背景噪音已測量完畢且接受此數據?", "My application", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
             light_RSS.BackColor = Color.DarkGreen
+            light_postCal.BackColor = Color.LightGreen
         End If
     End Sub
 
+    Private Sub LinkLabel_postCal_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel_postCal.LinkClicked
+        If MessageBox.Show("後校正已測量完畢且接受此數據?", "My application", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            light_postCal.BackColor = Color.DarkGreen
+        End If
+    End Sub
+
+    Private Sub LinkLabel_A1_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel_A1.LinkClicked
+        If MessageBox.Show("A1所有數據已測量完畢且接受此數據?", "My application", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            light_A1.BackColor = Color.DarkGreen
+            If status = 1 Or status = 3 Then
+                'if A1+A2===>excavator
+                If status = 1 Then
+                    '清空所有steps
+                    Step1.Text = ""
+                    Step2.Text = ""
+                    Step3.Text = ""
+                    Step4.Text = ""
+                    Step5.Text = ""
+                    Step6.Text = ""
+                    Step7.Text = ""
+                    Step8.Text = ""
+                    Step9.Text = ""
+
+                    '改手動輸入秒數
+                    auto = False
+                    '設定該循環的步驟
+                    sStep = 2
+                    eStep = 9
+
+                    '載入步驟
+                    Step1.Text = My.Resources.A2_Excavator_step1
+                    Step1.BackColor = Color.MistyRose
+                    Step2.Text = My.Resources.A2_Excavator_step2
+                    Step2.BackColor = Color.Orange
+                    Step3.Text = My.Resources.A2_Excavator_step3
+                    Step3.BackColor = Color.Orange
+                    Step4.Text = My.Resources.A2_Excavator_step4
+                    Step4.BackColor = Color.Orange
+                    Step5.Text = My.Resources.A2_Excavator_step5
+                    Step5.BackColor = Color.Orange
+                    Step6.Text = My.Resources.A2_Excavator_step6
+                    Step6.BackColor = Color.Orange
+                    Step7.Text = My.Resources.A2_Excavator_step7
+                    Step7.BackColor = Color.Orange
+                    Step8.Text = My.Resources.A2_Excavator_step8
+                    Step8.BackColor = Color.Orange
+                    Step9.Text = My.Resources.A2_Excavator_step9
+                    Step9.BackColor = Color.Orange
+                End If
+                'if A1+A2+A3==>
+                If status = 3 Then
+                    '清空所有steps
+                    Step1.Text = ""
+                    Step2.Text = ""
+                    Step3.Text = ""
+                    Step4.Text = ""
+                    Step5.Text = ""
+                    Step6.Text = ""
+                    Step7.Text = ""
+                    Step8.Text = ""
+                    Step9.Text = ""
+
+                    '改手動輸入秒數
+                    auto = False
+                    '設定該循環的步驟
+                    sStep = 2
+                    eStep = 3
+
+                    '載入步驟
+                    Step1.Text = My.Resources.A2_Loader_step1
+                    Step1.BackColor = Color.MistyRose
+                    Step2.Text = My.Resources.A2_Loader_step2
+                    Step2.BackColor = Color.Orange
+                    Step3.Text = My.Resources.A2_Loader_step3
+                    Step3.BackColor = Color.Orange
+                    Step4.BackColor = Color.DarkGray
+                    Step5.BackColor = Color.DarkGray
+                    Step6.BackColor = Color.DarkGray
+                    Step7.BackColor = Color.DarkGray
+                    Step8.BackColor = Color.DarkGray
+                    Step9.BackColor = Color.DarkGray
+                End If
+                MessageBox.Show("A2測量開始")
+                light_A2.BackColor = Color.LightGreen
+            End If
+            'if A1+A3==>tractor
+            If status = 2 Then
+                '清空所有steps
+                Step1.Text = ""
+                Step2.Text = ""
+                Step3.Text = ""
+                Step4.Text = ""
+                Step5.Text = ""
+                Step6.Text = ""
+                Step7.Text = ""
+                Step8.Text = ""
+                Step9.Text = ""
+
+                '改手動輸入秒數
+                auto = False
+                '設定該循環的步驟
+                sStep = 3
+                eStep = 4
+
+                '載入步驟
+                Step1.Text = My.Resources.A3_Tractor_step1
+                Step1.BackColor = Color.MistyRose
+                Step2.Text = My.Resources.A3_Tractor_step2
+                Step2.BackColor = Color.MistyRose
+                Step3.Text = My.Resources.A3_Tractor_step3
+                Step3.BackColor = Color.Orange
+                Step4.Text = My.Resources.A3_Tractor_step4
+                Step4.BackColor = Color.Orange
+                Step5.BackColor = Color.DarkGray
+                Step6.BackColor = Color.DarkGray
+                Step7.BackColor = Color.DarkGray
+                Step8.BackColor = Color.DarkGray
+                Step9.BackColor = Color.DarkGray
+                MessageBox.Show("A3測量開始")
+                light_A3.BackColor = Color.LightGreen
+            End If
+        End If
+    End Sub
+
+    Private Sub LinkLabel_A2_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel_A2.LinkClicked
+        If MessageBox.Show("A2所有數據已測量完畢且接受此數據?", "My application", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            light_A2.BackColor = Color.DarkGreen
+        End If
+        If status = 3 Then
+            '清空所有steps
+            Step1.Text = ""
+            Step2.Text = ""
+            Step3.Text = ""
+            Step4.Text = ""
+            Step5.Text = ""
+            Step6.Text = ""
+            Step7.Text = ""
+            Step8.Text = ""
+            Step9.Text = ""
+
+            '改手動輸入秒數
+            auto = False
+            '設定該循環的步驟
+            sStep = 3
+            eStep = 4
+
+            '載入步驟
+            Step1.Text = My.Resources.A3_Loader_step1
+            Step1.BackColor = Color.MistyRose
+            Step2.Text = My.Resources.A3_Loader_step2
+            Step2.BackColor = Color.MistyRose
+            Step3.Text = My.Resources.A3_Loader_step3
+            Step3.BackColor = Color.Orange
+            Step4.Text = My.Resources.A3_Loader_step4
+            Step4.BackColor = Color.Orange
+            Step5.BackColor = Color.DarkGray
+            Step6.BackColor = Color.DarkGray
+            Step7.BackColor = Color.DarkGray
+            Step8.BackColor = Color.DarkGray
+            Step9.BackColor = Color.DarkGray
+            MessageBox.Show("A3測量開始")
+            light_A3.BackColor = Color.LightGreen
+        End If
+        If status = 1 Then
+            MessageBox.Show("此機具所有測量步驟已結束")
+        End If
+    End Sub
+
+    Private Sub LinkLabel_A3_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel_A3.LinkClicked
+        If MessageBox.Show("A3所有數據已測量完畢且接受此數據?", "My application", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            light_A3.BackColor = Color.DarkGreen
+            MessageBox.Show("此機具所有測量步驟已結束")
+        End If
+    End Sub
+
+    Private Sub LinkLabel_A4_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel_A4.LinkClicked
+        If MessageBox.Show("A4所有數據已測量完畢且接受此數據?", "My application", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+            light_A4.BackColor = Color.DarkGreen
+            MessageBox.Show("此機具所有測量步驟已結束")
+        End If
+    End Sub
 End Class
 
 'helper classes for keeping track of labels and points

@@ -59,6 +59,13 @@ Partial Class Program
         Me.ComboBox_machine_list = New System.Windows.Forms.ComboBox()
         Me.Label_machine_choose = New System.Windows.Forms.Label()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.LinkLabel_A4 = New System.Windows.Forms.LinkLabel()
+        Me.LinkLabel_A3 = New System.Windows.Forms.LinkLabel()
+        Me.LinkLabel_A2 = New System.Windows.Forms.LinkLabel()
+        Me.LinkLabel_A1 = New System.Windows.Forms.LinkLabel()
+        Me.LinkLabel_postCal = New System.Windows.Forms.LinkLabel()
+        Me.LinkLabel_preCal = New System.Windows.Forms.LinkLabel()
+        Me.Step9 = New System.Windows.Forms.Label()
         Me.Noise6 = New System.Windows.Forms.Label()
         Me.Noise5 = New System.Windows.Forms.Label()
         Me.Noise4 = New System.Windows.Forms.Label()
@@ -84,6 +91,12 @@ Partial Class Program
         Me.timeLabel = New System.Windows.Forms.Label()
         Me.startButton = New System.Windows.Forms.Button()
         Me.ShapeContainer1 = New Microsoft.VisualBasic.PowerPacks.ShapeContainer()
+        Me.light_A4 = New Microsoft.VisualBasic.PowerPacks.OvalShape()
+        Me.light_A3 = New Microsoft.VisualBasic.PowerPacks.OvalShape()
+        Me.light_A2 = New Microsoft.VisualBasic.PowerPacks.OvalShape()
+        Me.light_A1 = New Microsoft.VisualBasic.PowerPacks.OvalShape()
+        Me.light_postCal = New Microsoft.VisualBasic.PowerPacks.OvalShape()
+        Me.light_preCal = New Microsoft.VisualBasic.PowerPacks.OvalShape()
         Me.light_RSS = New Microsoft.VisualBasic.PowerPacks.OvalShape()
         Me.light_Additional = New Microsoft.VisualBasic.PowerPacks.OvalShape()
         Me.light_3rd = New Microsoft.VisualBasic.PowerPacks.OvalShape()
@@ -108,7 +121,7 @@ Partial Class Program
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(827, 750)
+        Me.TabControl1.Size = New System.Drawing.Size(934, 750)
         Me.TabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
         Me.TabControl1.TabIndex = 0
         '
@@ -136,7 +149,7 @@ Partial Class Program
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Margin = New System.Windows.Forms.Padding(0)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Size = New System.Drawing.Size(819, 724)
+        Me.TabPage1.Size = New System.Drawing.Size(926, 724)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "機具選擇"
         '
@@ -435,7 +448,7 @@ Partial Class Program
         'ComboBox_machine_list
         '
         Me.ComboBox_machine_list.FormattingEnabled = True
-        Me.ComboBox_machine_list.Items.AddRange(New Object() {"開挖機", "拖索開挖機", "抓斗開挖機", "履帶起重機", "推土機", "牽引裝料機", "振動式打樁機", "鑽岩機", "壓路機", "輪胎式壓路機", "振動式壓路機", "瀝青混凝土舖料機(延長部分除外)", "混凝土割切機", "發電機(不含輪胎)", "空氣壓縮機(不含輪胎)", "卡車起重機", "輪形起重機", "混凝土泵", "油壓式打樁機", "油壓式鋼管壓入機", "拔樁機", "油壓式壓入拉拔樁機", "土壤取樣器", "全套管鑽掘機", "鑽土機", "混凝土破碎機"})
+        Me.ComboBox_machine_list.Items.AddRange(New Object() {"A1+A2", "開挖機(Excavator)", "A1+A3", "推土機(Crawler and wheel tractor)", "鐵輪壓路機(Road roller)", "膠輪壓路機(Wheel roller)", "振動式壓路機(Vibrating roller) ", "A1+A2+A3", "裝料機(Crawler and wheel loader)", "裝料開挖機", "A4", "履帶起重機(Crawler crane)", "卡車起重機(Truck crane)", "輪形起重機(Wheel crane)", "振動式樁錘(Vibrating hammer)", "油壓式打樁機(Hydraulic pile driver)", "拔樁機", "油壓式拔樁機", "土壤取樣器(地鑽) (Earth auger)", "全套管鑽掘機", "鑽土機(Earth drill)", "鑽岩機(Rock breaker)", "混凝土泵車(Concrete pump)", "混凝土破碎機(Concrete breaker)", "瀝青混凝土舖築機(Asphalt finisher)", "混凝土割切機(Concrete cutter)", "發電機(Generator)", "空氣壓縮機(Compressor) "})
         Me.ComboBox_machine_list.Location = New System.Drawing.Point(8, 32)
         Me.ComboBox_machine_list.Name = "ComboBox_machine_list"
         Me.ComboBox_machine_list.Size = New System.Drawing.Size(287, 20)
@@ -455,6 +468,13 @@ Partial Class Program
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.DarkGray
+        Me.TabPage2.Controls.Add(Me.LinkLabel_A4)
+        Me.TabPage2.Controls.Add(Me.LinkLabel_A3)
+        Me.TabPage2.Controls.Add(Me.LinkLabel_A2)
+        Me.TabPage2.Controls.Add(Me.LinkLabel_A1)
+        Me.TabPage2.Controls.Add(Me.LinkLabel_postCal)
+        Me.TabPage2.Controls.Add(Me.LinkLabel_preCal)
+        Me.TabPage2.Controls.Add(Me.Step9)
         Me.TabPage2.Controls.Add(Me.Noise6)
         Me.TabPage2.Controls.Add(Me.Noise5)
         Me.TabPage2.Controls.Add(Me.Noise4)
@@ -484,15 +504,83 @@ Partial Class Program
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Margin = New System.Windows.Forms.Padding(0)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Size = New System.Drawing.Size(819, 539)
+        Me.TabPage2.Size = New System.Drawing.Size(926, 724)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "測試主畫面"
+        '
+        'LinkLabel_A4
+        '
+        Me.LinkLabel_A4.AutoSize = True
+        Me.LinkLabel_A4.Location = New System.Drawing.Point(61, 617)
+        Me.LinkLabel_A4.Name = "LinkLabel_A4"
+        Me.LinkLabel_A4.Size = New System.Drawing.Size(21, 12)
+        Me.LinkLabel_A4.TabIndex = 57
+        Me.LinkLabel_A4.TabStop = True
+        Me.LinkLabel_A4.Text = "A4"
+        '
+        'LinkLabel_A3
+        '
+        Me.LinkLabel_A3.AutoSize = True
+        Me.LinkLabel_A3.Location = New System.Drawing.Point(61, 584)
+        Me.LinkLabel_A3.Name = "LinkLabel_A3"
+        Me.LinkLabel_A3.Size = New System.Drawing.Size(21, 12)
+        Me.LinkLabel_A3.TabIndex = 56
+        Me.LinkLabel_A3.TabStop = True
+        Me.LinkLabel_A3.Text = "A3"
+        '
+        'LinkLabel_A2
+        '
+        Me.LinkLabel_A2.AutoSize = True
+        Me.LinkLabel_A2.Location = New System.Drawing.Point(61, 552)
+        Me.LinkLabel_A2.Name = "LinkLabel_A2"
+        Me.LinkLabel_A2.Size = New System.Drawing.Size(21, 12)
+        Me.LinkLabel_A2.TabIndex = 55
+        Me.LinkLabel_A2.TabStop = True
+        Me.LinkLabel_A2.Text = "A2"
+        '
+        'LinkLabel_A1
+        '
+        Me.LinkLabel_A1.AutoSize = True
+        Me.LinkLabel_A1.Location = New System.Drawing.Point(61, 519)
+        Me.LinkLabel_A1.Name = "LinkLabel_A1"
+        Me.LinkLabel_A1.Size = New System.Drawing.Size(21, 12)
+        Me.LinkLabel_A1.TabIndex = 54
+        Me.LinkLabel_A1.TabStop = True
+        Me.LinkLabel_A1.Text = "A1"
+        '
+        'LinkLabel_postCal
+        '
+        Me.LinkLabel_postCal.AutoSize = True
+        Me.LinkLabel_postCal.Location = New System.Drawing.Point(48, 303)
+        Me.LinkLabel_postCal.Name = "LinkLabel_postCal"
+        Me.LinkLabel_postCal.Size = New System.Drawing.Size(51, 12)
+        Me.LinkLabel_postCal.TabIndex = 53
+        Me.LinkLabel_postCal.TabStop = True
+        Me.LinkLabel_postCal.Text = "Post Cal"
+        '
+        'LinkLabel_preCal
+        '
+        Me.LinkLabel_preCal.AutoSize = True
+        Me.LinkLabel_preCal.Location = New System.Drawing.Point(48, 25)
+        Me.LinkLabel_preCal.Name = "LinkLabel_preCal"
+        Me.LinkLabel_preCal.Size = New System.Drawing.Size(46, 12)
+        Me.LinkLabel_preCal.TabIndex = 52
+        Me.LinkLabel_preCal.TabStop = True
+        Me.LinkLabel_preCal.Text = "Pre Cal"
+        '
+        'Step9
+        '
+        Me.Step9.Font = New System.Drawing.Font("新細明體", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.Step9.Location = New System.Drawing.Point(694, 580)
+        Me.Step9.Name = "Step9"
+        Me.Step9.Size = New System.Drawing.Size(200, 57)
+        Me.Step9.TabIndex = 51
         '
         'Noise6
         '
         Me.Noise6.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Noise6.Font = New System.Drawing.Font("新細明體", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
-        Me.Noise6.Location = New System.Drawing.Point(611, 300)
+        Me.Noise6.Location = New System.Drawing.Point(621, 580)
         Me.Noise6.Name = "Noise6"
         Me.Noise6.Size = New System.Drawing.Size(67, 78)
         Me.Noise6.TabIndex = 50
@@ -502,7 +590,7 @@ Partial Class Program
         '
         Me.Noise5.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Noise5.Font = New System.Drawing.Font("新細明體", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
-        Me.Noise5.Location = New System.Drawing.Point(538, 300)
+        Me.Noise5.Location = New System.Drawing.Point(548, 580)
         Me.Noise5.Name = "Noise5"
         Me.Noise5.Size = New System.Drawing.Size(67, 78)
         Me.Noise5.TabIndex = 49
@@ -512,7 +600,7 @@ Partial Class Program
         '
         Me.Noise4.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Noise4.Font = New System.Drawing.Font("新細明體", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
-        Me.Noise4.Location = New System.Drawing.Point(465, 300)
+        Me.Noise4.Location = New System.Drawing.Point(475, 580)
         Me.Noise4.Name = "Noise4"
         Me.Noise4.Size = New System.Drawing.Size(67, 78)
         Me.Noise4.TabIndex = 48
@@ -522,7 +610,7 @@ Partial Class Program
         '
         Me.Noise3.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Noise3.Font = New System.Drawing.Font("新細明體", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
-        Me.Noise3.Location = New System.Drawing.Point(392, 300)
+        Me.Noise3.Location = New System.Drawing.Point(402, 580)
         Me.Noise3.Name = "Noise3"
         Me.Noise3.Size = New System.Drawing.Size(67, 78)
         Me.Noise3.TabIndex = 47
@@ -532,7 +620,7 @@ Partial Class Program
         '
         Me.Noise2.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Noise2.Font = New System.Drawing.Font("新細明體", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
-        Me.Noise2.Location = New System.Drawing.Point(319, 300)
+        Me.Noise2.Location = New System.Drawing.Point(329, 580)
         Me.Noise2.Name = "Noise2"
         Me.Noise2.Size = New System.Drawing.Size(67, 78)
         Me.Noise2.TabIndex = 46
@@ -542,7 +630,7 @@ Partial Class Program
         '
         Me.Noise1.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Noise1.Font = New System.Drawing.Font("新細明體", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
-        Me.Noise1.Location = New System.Drawing.Point(246, 300)
+        Me.Noise1.Location = New System.Drawing.Point(256, 580)
         Me.Noise1.Name = "Noise1"
         Me.Noise1.Size = New System.Drawing.Size(67, 78)
         Me.Noise1.TabIndex = 45
@@ -551,7 +639,7 @@ Partial Class Program
         'LinkLabel_RSS
         '
         Me.LinkLabel_RSS.AutoSize = True
-        Me.LinkLabel_RSS.Location = New System.Drawing.Point(50, 222)
+        Me.LinkLabel_RSS.Location = New System.Drawing.Point(48, 266)
         Me.LinkLabel_RSS.Name = "LinkLabel_RSS"
         Me.LinkLabel_RSS.Size = New System.Drawing.Size(28, 12)
         Me.LinkLabel_RSS.TabIndex = 44
@@ -561,7 +649,7 @@ Partial Class Program
         'LinkLabel_Additional
         '
         Me.LinkLabel_Additional.AutoSize = True
-        Me.LinkLabel_Additional.Location = New System.Drawing.Point(50, 182)
+        Me.LinkLabel_Additional.Location = New System.Drawing.Point(48, 226)
         Me.LinkLabel_Additional.Name = "LinkLabel_Additional"
         Me.LinkLabel_Additional.Size = New System.Drawing.Size(64, 12)
         Me.LinkLabel_Additional.TabIndex = 43
@@ -571,7 +659,7 @@ Partial Class Program
         'LinkLabel_3rd
         '
         Me.LinkLabel_3rd.AutoSize = True
-        Me.LinkLabel_3rd.Location = New System.Drawing.Point(50, 142)
+        Me.LinkLabel_3rd.Location = New System.Drawing.Point(48, 186)
         Me.LinkLabel_3rd.Name = "LinkLabel_3rd"
         Me.LinkLabel_3rd.Size = New System.Drawing.Size(24, 12)
         Me.LinkLabel_3rd.TabIndex = 42
@@ -581,7 +669,7 @@ Partial Class Program
         'LinkLabel_2nd
         '
         Me.LinkLabel_2nd.AutoSize = True
-        Me.LinkLabel_2nd.Location = New System.Drawing.Point(50, 102)
+        Me.LinkLabel_2nd.Location = New System.Drawing.Point(48, 146)
         Me.LinkLabel_2nd.Name = "LinkLabel_2nd"
         Me.LinkLabel_2nd.Size = New System.Drawing.Size(26, 12)
         Me.LinkLabel_2nd.TabIndex = 41
@@ -591,7 +679,7 @@ Partial Class Program
         'LinkLabel_1st
         '
         Me.LinkLabel_1st.AutoSize = True
-        Me.LinkLabel_1st.Location = New System.Drawing.Point(50, 62)
+        Me.LinkLabel_1st.Location = New System.Drawing.Point(48, 106)
         Me.LinkLabel_1st.Name = "LinkLabel_1st"
         Me.LinkLabel_1st.Size = New System.Drawing.Size(21, 12)
         Me.LinkLabel_1st.TabIndex = 40
@@ -601,7 +689,7 @@ Partial Class Program
         'LinkLabel_BG
         '
         Me.LinkLabel_BG.AutoSize = True
-        Me.LinkLabel_BG.Location = New System.Drawing.Point(50, 22)
+        Me.LinkLabel_BG.Location = New System.Drawing.Point(48, 66)
         Me.LinkLabel_BG.Name = "LinkLabel_BG"
         Me.LinkLabel_BG.Size = New System.Drawing.Size(73, 12)
         Me.LinkLabel_BG.TabIndex = 39
@@ -611,9 +699,9 @@ Partial Class Program
         'Step8
         '
         Me.Step8.Font = New System.Drawing.Font("新細明體", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
-        Me.Step8.Location = New System.Drawing.Point(658, 509)
+        Me.Step8.Location = New System.Drawing.Point(718, 508)
         Me.Step8.Name = "Step8"
-        Me.Step8.Size = New System.Drawing.Size(153, 52)
+        Me.Step8.Size = New System.Drawing.Size(200, 57)
         Me.Step8.TabIndex = 38
         '
         'Step7
@@ -621,7 +709,7 @@ Partial Class Program
         Me.Step7.Font = New System.Drawing.Font("新細明體", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
         Me.Step7.Location = New System.Drawing.Point(658, 436)
         Me.Step7.Name = "Step7"
-        Me.Step7.Size = New System.Drawing.Size(153, 52)
+        Me.Step7.Size = New System.Drawing.Size(200, 57)
         Me.Step7.TabIndex = 37
         '
         'Step6
@@ -629,7 +717,7 @@ Partial Class Program
         Me.Step6.Font = New System.Drawing.Font("新細明體", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
         Me.Step6.Location = New System.Drawing.Point(658, 367)
         Me.Step6.Name = "Step6"
-        Me.Step6.Size = New System.Drawing.Size(153, 52)
+        Me.Step6.Size = New System.Drawing.Size(200, 57)
         Me.Step6.TabIndex = 36
         '
         'Step5
@@ -637,7 +725,7 @@ Partial Class Program
         Me.Step5.Font = New System.Drawing.Font("新細明體", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
         Me.Step5.Location = New System.Drawing.Point(658, 300)
         Me.Step5.Name = "Step5"
-        Me.Step5.Size = New System.Drawing.Size(153, 52)
+        Me.Step5.Size = New System.Drawing.Size(200, 57)
         Me.Step5.TabIndex = 35
         '
         'Step4
@@ -645,7 +733,7 @@ Partial Class Program
         Me.Step4.Font = New System.Drawing.Font("新細明體", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
         Me.Step4.Location = New System.Drawing.Point(658, 226)
         Me.Step4.Name = "Step4"
-        Me.Step4.Size = New System.Drawing.Size(153, 52)
+        Me.Step4.Size = New System.Drawing.Size(200, 57)
         Me.Step4.TabIndex = 34
         '
         'Step3
@@ -653,7 +741,7 @@ Partial Class Program
         Me.Step3.Font = New System.Drawing.Font("新細明體", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
         Me.Step3.Location = New System.Drawing.Point(658, 157)
         Me.Step3.Name = "Step3"
-        Me.Step3.Size = New System.Drawing.Size(153, 52)
+        Me.Step3.Size = New System.Drawing.Size(200, 57)
         Me.Step3.TabIndex = 33
         '
         'Step2
@@ -661,20 +749,20 @@ Partial Class Program
         Me.Step2.Font = New System.Drawing.Font("新細明體", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
         Me.Step2.Location = New System.Drawing.Point(658, 85)
         Me.Step2.Name = "Step2"
-        Me.Step2.Size = New System.Drawing.Size(153, 52)
+        Me.Step2.Size = New System.Drawing.Size(200, 57)
         Me.Step2.TabIndex = 32
         '
         'Step1
         '
         Me.Step1.Font = New System.Drawing.Font("新細明體", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
-        Me.Step1.Location = New System.Drawing.Point(658, 20)
+        Me.Step1.Location = New System.Drawing.Point(703, 22)
         Me.Step1.Name = "Step1"
-        Me.Step1.Size = New System.Drawing.Size(153, 52)
+        Me.Step1.Size = New System.Drawing.Size(200, 57)
         Me.Step1.TabIndex = 31
         '
         'stopButton
         '
-        Me.stopButton.Location = New System.Drawing.Point(9, 381)
+        Me.stopButton.Location = New System.Drawing.Point(19, 461)
         Me.stopButton.Name = "stopButton"
         Me.stopButton.Size = New System.Drawing.Size(75, 23)
         Me.stopButton.TabIndex = 17
@@ -683,7 +771,7 @@ Partial Class Program
         '
         'continueButton
         '
-        Me.continueButton.Location = New System.Drawing.Point(90, 381)
+        Me.continueButton.Location = New System.Drawing.Point(100, 461)
         Me.continueButton.Name = "continueButton"
         Me.continueButton.Size = New System.Drawing.Size(75, 23)
         Me.continueButton.TabIndex = 18
@@ -695,14 +783,14 @@ Partial Class Program
         Me.timeLabel.BackColor = System.Drawing.SystemColors.Info
         Me.timeLabel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.timeLabel.Font = New System.Drawing.Font("微軟正黑體", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
-        Me.timeLabel.Location = New System.Drawing.Point(9, 300)
+        Me.timeLabel.Location = New System.Drawing.Point(19, 380)
         Me.timeLabel.Name = "timeLabel"
         Me.timeLabel.Size = New System.Drawing.Size(217, 78)
         Me.timeLabel.TabIndex = 15
         '
         'startButton
         '
-        Me.startButton.Location = New System.Drawing.Point(9, 274)
+        Me.startButton.Location = New System.Drawing.Point(19, 354)
         Me.startButton.Name = "startButton"
         Me.startButton.Size = New System.Drawing.Size(75, 23)
         Me.startButton.TabIndex = 13
@@ -714,43 +802,85 @@ Partial Class Program
         Me.ShapeContainer1.Location = New System.Drawing.Point(0, 0)
         Me.ShapeContainer1.Margin = New System.Windows.Forms.Padding(0)
         Me.ShapeContainer1.Name = "ShapeContainer1"
-        Me.ShapeContainer1.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.light_RSS, Me.light_Additional, Me.light_3rd, Me.light_2nd, Me.light_1st, Me.light_BG})
-        Me.ShapeContainer1.Size = New System.Drawing.Size(819, 539)
+        Me.ShapeContainer1.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.light_A4, Me.light_A3, Me.light_A2, Me.light_A1, Me.light_postCal, Me.light_preCal, Me.light_RSS, Me.light_Additional, Me.light_3rd, Me.light_2nd, Me.light_1st, Me.light_BG})
+        Me.ShapeContainer1.Size = New System.Drawing.Size(926, 724)
         Me.ShapeContainer1.TabIndex = 21
         Me.ShapeContainer1.TabStop = False
+        '
+        'light_A4
+        '
+        Me.light_A4.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
+        Me.light_A4.Location = New System.Drawing.Point(24, 606)
+        Me.light_A4.Name = "light_A4"
+        Me.light_A4.Size = New System.Drawing.Size(25, 22)
+        '
+        'light_A3
+        '
+        Me.light_A3.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
+        Me.light_A3.Location = New System.Drawing.Point(23, 572)
+        Me.light_A3.Name = "light_A3"
+        Me.light_A3.Size = New System.Drawing.Size(25, 22)
+        '
+        'light_A2
+        '
+        Me.light_A2.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
+        Me.light_A2.Location = New System.Drawing.Point(23, 541)
+        Me.light_A2.Name = "light_A2"
+        Me.light_A2.Size = New System.Drawing.Size(25, 22)
+        '
+        'light_A1
+        '
+        Me.light_A1.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
+        Me.light_A1.Location = New System.Drawing.Point(22, 508)
+        Me.light_A1.Name = "light_A1"
+        Me.light_A1.Size = New System.Drawing.Size(25, 22)
+        '
+        'light_postCal
+        '
+        Me.light_postCal.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
+        Me.light_postCal.Location = New System.Drawing.Point(18, 299)
+        Me.light_postCal.Name = "light_postCal"
+        Me.light_postCal.Size = New System.Drawing.Size(25, 22)
+        '
+        'light_preCal
+        '
+        Me.light_preCal.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
+        Me.light_preCal.Location = New System.Drawing.Point(19, 24)
+        Me.light_preCal.Name = "light_preCal"
+        Me.light_preCal.Size = New System.Drawing.Size(25, 22)
         '
         'light_RSS
         '
         Me.light_RSS.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
-        Me.light_RSS.Location = New System.Drawing.Point(19, 217)
+        Me.light_RSS.Location = New System.Drawing.Point(18, 260)
         Me.light_RSS.Name = "light_RSS"
         Me.light_RSS.Size = New System.Drawing.Size(25, 22)
         '
         'light_Additional
         '
         Me.light_Additional.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
-        Me.light_Additional.Location = New System.Drawing.Point(19, 177)
+        Me.light_Additional.Location = New System.Drawing.Point(18, 220)
         Me.light_Additional.Name = "light_Additional"
         Me.light_Additional.Size = New System.Drawing.Size(25, 22)
         '
         'light_3rd
         '
         Me.light_3rd.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
-        Me.light_3rd.Location = New System.Drawing.Point(19, 137)
+        Me.light_3rd.Location = New System.Drawing.Point(18, 180)
         Me.light_3rd.Name = "light_3rd"
         Me.light_3rd.Size = New System.Drawing.Size(25, 22)
         '
         'light_2nd
         '
         Me.light_2nd.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
-        Me.light_2nd.Location = New System.Drawing.Point(19, 97)
+        Me.light_2nd.Location = New System.Drawing.Point(18, 140)
         Me.light_2nd.Name = "light_2nd"
         Me.light_2nd.Size = New System.Drawing.Size(25, 22)
         '
         'light_1st
         '
         Me.light_1st.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
-        Me.light_1st.Location = New System.Drawing.Point(19, 57)
+        Me.light_1st.Location = New System.Drawing.Point(18, 100)
         Me.light_1st.Name = "light_1st"
         Me.light_1st.Size = New System.Drawing.Size(25, 22)
         '
@@ -758,7 +888,7 @@ Partial Class Program
         '
         Me.light_BG.BackColor = System.Drawing.Color.DarkGray
         Me.light_BG.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
-        Me.light_BG.Location = New System.Drawing.Point(19, 17)
+        Me.light_BG.Location = New System.Drawing.Point(18, 60)
         Me.light_BG.Name = "light_BG"
         Me.light_BG.Size = New System.Drawing.Size(25, 22)
         '
@@ -771,7 +901,7 @@ Partial Class Program
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.DarkGray
-        Me.ClientSize = New System.Drawing.Size(827, 750)
+        Me.ClientSize = New System.Drawing.Size(934, 750)
         Me.Controls.Add(Me.TabControl1)
         Me.Name = "Program"
         Me.Text = "Program"
@@ -858,4 +988,17 @@ Partial Class Program
     Friend WithEvents p3Label As System.Windows.Forms.Label
     Friend WithEvents p2Label As System.Windows.Forms.Label
     Friend WithEvents p1Label As System.Windows.Forms.Label
+    Friend WithEvents Step9 As System.Windows.Forms.Label
+    Friend WithEvents LinkLabel_postCal As System.Windows.Forms.LinkLabel
+    Friend WithEvents LinkLabel_preCal As System.Windows.Forms.LinkLabel
+    Friend WithEvents light_postCal As Microsoft.VisualBasic.PowerPacks.OvalShape
+    Friend WithEvents light_preCal As Microsoft.VisualBasic.PowerPacks.OvalShape
+    Friend WithEvents LinkLabel_A2 As System.Windows.Forms.LinkLabel
+    Friend WithEvents LinkLabel_A1 As System.Windows.Forms.LinkLabel
+    Friend WithEvents light_A4 As Microsoft.VisualBasic.PowerPacks.OvalShape
+    Friend WithEvents light_A3 As Microsoft.VisualBasic.PowerPacks.OvalShape
+    Friend WithEvents light_A2 As Microsoft.VisualBasic.PowerPacks.OvalShape
+    Friend WithEvents light_A1 As Microsoft.VisualBasic.PowerPacks.OvalShape
+    Friend WithEvents LinkLabel_A4 As System.Windows.Forms.LinkLabel
+    Friend WithEvents LinkLabel_A3 As System.Windows.Forms.LinkLabel
 End Class
