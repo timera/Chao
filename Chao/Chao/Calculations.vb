@@ -31,19 +31,19 @@
         A3
         A4
     End Enum
-    '3 time calculations
-    Shared Function ThreeTimeCalculation(ByRef matrix As List(Of List(Of Double)), ByVal mode As Modes, ByVal r As Double, ByRef warning As String)
-        If mode = Modes.A1 Then
-            Return A1Calc(matrix, r, warning)
-        ElseIf mode = Modes.A2 Then
-            Return A2Calc(matrix, r, warning)
-        ElseIf mode = Modes.A3 Then
-            Return A3Calc(matrix, r, warning)
-        ElseIf mode = Modes.A4 Then
-            Return A4Calc(matrix, r, warning)
-        End If
-        Return False
-    End Function
+    ''3 time calculations
+    'Shared Function ThreeTimeCalculation(ByRef matrix As List(Of List(Of Double)), ByVal mode As Modes, ByVal r As Double, ByRef warning As String)
+    '    If mode = Modes.A1 Then
+    '        Return A1Calc(matrix, r, warning)
+    '    ElseIf mode = Modes.A2 Then
+    '        Return A2Calc(matrix, r, warning)
+    '    ElseIf mode = Modes.A3 Then
+    '        Return A3Calc(matrix, r, warning)
+    '    ElseIf mode = Modes.A4 Then
+    '        Return A4Calc(matrix, r, warning)
+    '    End If
+    '    Return False
+    'End Function
 
     'calculates the average
     Shared Function Average(ByVal numbers() As Double)

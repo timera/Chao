@@ -61,7 +61,7 @@ Public Class CGraph
 
     End Sub
     'Update function
-    Public Overridable Sub Update(ByVal newVal() As Integer)
+    Public Overridable Sub Update(ByVal newVal() As Double)
     End Sub
 
 End Class
@@ -122,6 +122,10 @@ Public Class LineGraph
 
     End Sub
 
+    'get the time for chart
+    Public Function GetTime()
+        Return TimeInSec
+    End Function
     'Show initial chart
     Public Sub ShowInitChart(ByVal width As Integer, ByVal height As Integer)
         chart.ChartAreas(0).AxisX.Maximum = width
@@ -141,7 +145,7 @@ Public Class LineGraph
     End Sub
 
     'Update function
-    Public Overrides Sub Update(ByVal newVal() As Integer)
+    Public Overrides Sub Update(ByVal newVal() As Double)
         If Not newVal.Length = NumOfMics Then
             Return
         End If
@@ -186,15 +190,25 @@ Public Class BarGraph
             listOfNames.Add(tag)
             listOfPoints.Add(0)
         Next
+        listOfNames.Add("Average")
+        listOfPoints.Add(0)
         series(0).Points.DataBindXY(listOfNames, listOfPoints)
 
     End Sub
 
     'Update function
-    Public Overrides Sub Update(ByVal newVal() As Integer)
+    Public Overrides Sub Update(ByVal newVal() As Double)
         If Not newVal.Length = NumOfMics Then
             Return
         End If
-        series(0).Points.DataBindXY(listOfNames, newVal)
+        'adding average datapoint
+        Dim temp(newVal.Length + 1) As Double
+        Dim sum As Double = 0
+        For i = 0 To newVal.Length - 1
+            temp(i) = newVal(i)
+            sum += newVal(i)
+        Next
+        temp(newVal.Length) = sum / newVal.Length
+        series(0).Points.DataBindXY(listOfNames, temp)
     End Sub
 End Class
