@@ -104,6 +104,7 @@ Partial Class Program
         Me.light_1st = New Microsoft.VisualBasic.PowerPacks.OvalShape()
         Me.light_BG = New Microsoft.VisualBasic.PowerPacks.OvalShape()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Step10 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox_Plot.SuspendLayout()
@@ -468,6 +469,7 @@ Partial Class Program
         'TabPage2
         '
         Me.TabPage2.BackColor = System.Drawing.Color.DarkGray
+        Me.TabPage2.Controls.Add(Me.Step10)
         Me.TabPage2.Controls.Add(Me.LinkLabel_A4)
         Me.TabPage2.Controls.Add(Me.LinkLabel_A3)
         Me.TabPage2.Controls.Add(Me.LinkLabel_A2)
@@ -896,6 +898,14 @@ Partial Class Program
         '
         Me.Timer1.Interval = 1000
         '
+        'Step10
+        '
+        Me.Step10.Font = New System.Drawing.Font("新細明體", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.Step10.Location = New System.Drawing.Point(694, 637)
+        Me.Step10.Name = "Step10"
+        Me.Step10.Size = New System.Drawing.Size(200, 57)
+        Me.Step10.TabIndex = 58
+        '
         'Program
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -1001,4 +1011,5 @@ Partial Class Program
     Friend WithEvents light_A1 As Microsoft.VisualBasic.PowerPacks.OvalShape
     Friend WithEvents LinkLabel_A4 As System.Windows.Forms.LinkLabel
     Friend WithEvents LinkLabel_A3 As System.Windows.Forms.LinkLabel
+    Friend WithEvents Step10 As System.Windows.Forms.Label
 End Class
